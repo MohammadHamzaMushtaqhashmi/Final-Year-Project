@@ -1,10 +1,9 @@
 import React from 'react';
 import '../CSS/header.css';
-
 function Header() {
   return (
     <header>
-      <div className="logo">MovieMate</div>
+      <img src="/image/MovieMate icon" alt="MovieMate Logo" className="logo" />
       <button className="menu-button">Menu</button>
       <input type="text" placeholder="Search" className="search-bar" />
       <button className="watchlist-button">Watchlist</button>

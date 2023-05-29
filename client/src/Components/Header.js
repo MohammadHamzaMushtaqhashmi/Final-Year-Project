@@ -1,8 +1,4 @@
 import React from 'react';
-import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import PersonIcon from '@material-ui/icons/Person';
 import '../CSS/header.css';
 const Header = () => {
     return (
@@ -32,3 +28,4 @@ const Header = () => {
       </header>
     );
   };
+export default Header;

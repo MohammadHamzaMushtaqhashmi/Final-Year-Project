@@ -1,0 +1,31 @@
+.movies-list {
+    position: relative;
+  }
+  
+  .movies-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+  }
+  
+  .movie {
+    flex: 0 0 auto;
+    width: 200px;
+    margin-right: 20px;
+  }
+  
+  .movie img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .scroll-button {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    font-size: 24px;
+  }
+  

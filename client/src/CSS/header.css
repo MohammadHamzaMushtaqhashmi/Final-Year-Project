@@ -8,8 +8,8 @@ header {
   }
   
   .logo {
-    font-size: 24px;
-    font-weight: bold;
+    max-width: 150px;
+    max-height: 70px;
   }
   
   .menu-button {

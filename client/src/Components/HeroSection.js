@@ -21,13 +21,16 @@ function Hero() {
     fetchData();
   }, []);
 
+
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-  };
+    autoplay: true,
+    autoplaySpeed: 2000,
+};
 
   const handleMovieClick = (movieId) => {
     // Add code to navigate to a new page with more information about the movie
@@ -36,17 +39,18 @@ function Hero() {
 
   return (
     <div className="hero">
-      <Slider {...settings}>
-        {movies.map((movie) => (
-          <div key={movie.id} onClick={() => handleMovieClick(movie.id)}>
-            <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
-            <h2>{movie.title}</h2>
-          </div>
-        ))}
-      </Slider>
-      {/* Add other hero section content here */}
+        <Slider {...settings}>
+            {movies.map((movie) => (
+                <div key={movie.id} onClick={() => handleMovieClick(movie.id)}>
+                    <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} />
+                    <h2>{movie.title}</h2>
+                </div>
+            ))}
+        </Slider>
+        {/* Add other hero section content here */}
     </div>
-  );
+);
+
 }
 
 export default Hero;

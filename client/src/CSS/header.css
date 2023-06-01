@@ -36,11 +36,7 @@ header {
 
 .search-container label {
   margin-right: 10px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
-
 .search-bar {
   padding: 10px;
   border-radius: 5px;

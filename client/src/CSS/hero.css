@@ -20,4 +20,25 @@
     font-size: 24px;
     margin-top: 16px;
   }
-  
+  .hero {
+  position: relative;
+}
+
+.hero .slick-slider {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero .slick-slide {
+  text-align: center;
+}
+
+.hero .slick-slide img {
+  max-width: 100%;
+  height: auto;
+}
+
+.hero .slick-slide h2 {
+  font-size: 24px;
+  margin-top: 16px;
+}

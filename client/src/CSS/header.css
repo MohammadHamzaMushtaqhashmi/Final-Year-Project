@@ -1,34 +1,60 @@
 header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px;
-    background-color: #333;
-    color: white;
-  }
-  
-  .logo {
-    max-width: 150px;
-    max-height: 70px;
-  }
-  
-  .menu-button {
-    background-color: transparent;
-    border: none;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .search-bar {
-    padding: 10px;
-    border-radius: 5px;
-  }
-  
-  .watchlist-button,
-  .sign-in-button,
-  .sign-up-button {
-    background-color: transparent;
-    border: none;
-    color: white;
-    cursor: pointer;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #333;
+  color: white;
+}
+
+.logo {
+  max-width: 150px;
+  max-height: 70px;
+}
+
+.menu-button,
+.watchlist-button,
+.sign-in-button,
+.sign-up-button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+.search-button{
+  color: gray;
+  border: none;
+  background-color: white;
+}
+.search-container {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.search-container label {
+  margin-right: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.search-bar {
+  padding: 10px;
+  border-radius: 5px;
+  flex-grow: 1;
+  border: none;
+}
+
+.header-left,
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.header-left > * + *,
+.header-right > * + * {
+  margin-left: 10px;
+}

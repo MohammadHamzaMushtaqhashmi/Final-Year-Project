@@ -3,6 +3,7 @@ import Header from './Components/Header';
 import HeroSection from './Components/HeroSection';
 import MoviesCategory from './Components/MoviesCategory';
 import Footer from './Components/Footer';
+import './App.css';
 function App() {
   return (
     <div>

@@ -1,41 +1,42 @@
-.movies-list {
-  position: relative;
+body {
   background-color: black;
+  color: white;
+}
+
+.movies-list {
+  display: flex;
+  align-items: center;
 }
 
 .movies-container {
   display: flex;
-  overflow-x: auto;
-  scroll-behavior: smooth;
+  overflow-x: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
-.movie {
+.movies-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+
+.movie-card {
   flex: 0 0 auto;
   width: 200px;
-  margin-right: 20px;
-}
-
-.movie img {
-  width: 100%;
-  height: auto;
+  margin: 10px;
   border-radius: 10px;
-  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  transition: transform 0.2s;
 }
 
-.movie:hover img {
+.movie-card:hover {
   transform: scale(1.1);
 }
 
-.movie:not(:hover) img {
-  opacity: 0.5;
+.movie-card img {
+  width: 100%;
 }
 
 .scroll-button {
-  position: absolute;
-  top: 50%;
-  right: -30px;
-  transform: translateY(-50%);
-  background-color: rgba(255, 255, 255, 0.5);
-  border: none;
   font-size: 24px;
 }

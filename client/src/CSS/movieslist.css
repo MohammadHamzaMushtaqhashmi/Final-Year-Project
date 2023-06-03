@@ -1,31 +1,41 @@
 .movies-list {
-    position: relative;
-  }
-  
-  .movies-container {
-    display: flex;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-  }
-  
-  .movie {
-    flex: 0 0 auto;
-    width: 200px;
-    margin-right: 20px;
-  }
-  
-  .movie img {
-    width: 100%;
-    height: auto;
-  }
-  
-  .scroll-button {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-    background-color: rgba(255, 255, 255, 0.5);
-    border: none;
-    font-size: 24px;
-  }
-  
+  position: relative;
+  background-color: black;
+}
+
+.movies-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+.movie {
+  flex: 0 0 auto;
+  width: 200px;
+  margin-right: 20px;
+}
+
+.movie img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+.movie:hover img {
+  transform: scale(1.1);
+}
+
+.movie:not(:hover) img {
+  opacity: 0.5;
+}
+
+.scroll-button {
+  position: absolute;
+  top: 50%;
+  right: -30px;
+  transform: translateY(-50%);
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  font-size: 24px;
+}

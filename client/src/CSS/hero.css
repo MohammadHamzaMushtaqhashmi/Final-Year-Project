@@ -1,41 +1,184 @@
-.hero {
-  display: flex;
-  max-width: 100%;
-  height: 500px;
-  background-color: #f5f5f5;
-  margin: 20px;
+/*
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  box-sizing: border-box;
 }
 
-.left-part {
-  max-width: 50%;
-  max-height: 500px;
-  flex: 1;
-  margin-right: 20px;
-  border-radius: 10px;
-  overflow: hidden;
-  border: 1px solid #ccc;
-  transition: all 0.3s ease-in-out;
+section {
+  display: block;
 }
 
-.left-part .slick-slider {
-  max-width: 100%;
-  text-align: center;
+.heropage {
+  color: white;
+  margin-top: 100px;
+  margin-left: 100px;
 }
 
-.left-part .slick-slide img {
-  width: 100%;
-  object-fit: fill;
+div {
+  display: block;
 }
 
-.right-part {
-  flex: 1;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  transition: all 0.3s ease-in-out;
-  padding: 10px;
+.inside-heropage {
+  line-height: 2;
 }
 
-.slick-slider {
-  max-width: 100%;
-  max-height: 100%;
+.inside-heropage h1 {
+  font-size: 40px;
+}
+
+.inside-heropage p {
+  font-size: 17px;
+}
+
+p {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+:-webkit-any(article, aside, nav, section) h1 {
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+}
+
+span {
+  color: teal;
+  font-weight: bold;
+}
+
+.line1 {
+  height: 2px;
+  background-color: rgb(18, 241, 241);
+  width: 12%;
+  margin-left: 0px;
+  margin-top: 0px;
+}
+
+.btn1 {
+  margin-top:30px ;
+}
+
+.btn1 a{
+    background-color :teal ;
+    color :white ;
+    padding :10px   ;
+    text-decoration :none ;
+    border-radius :30px ;
+    cursor :pointer ;
+}
+
+.btn1 a:hover{
+    background :black ;
+    color :teal ;
+}
+
+.btn1 i{
+    color :black ;
+    padding :0px   ;
+}
+
+.btn1 i:hover{
+    color :white ;
+}
+.fa .fas{
+    font-weight :900 ;
+}
+.fa, .far, .fas{
+    font-family :"Font Awesome   Free" ;
+}
+.fa, .fab, .fad, .fal, .far, .fas{
+    -moz-osx-font-smoothing :grayscale ;
+    -webkit-font-smoothing :antialiased ;
+    display :inline-block ;
+    font-style :normal ;
+    font-variant :normal ;
+    text-rendering :auto ;
+    line-height :1 ;
+}
+.fa-play:before{
+    content :"f04b" ;
+}
+.fa-heart:before{
+    content :"f004" ;
+}
+.poster{
+    margin-top :130px ;
+    margin-right :10px ;
+}
+
+.poster img{
+    height :320px ;
+    border-radius :100px ;
+    width :900px ;
+}
+img{
+overflow-clip-margin :content-box ;
+overflow :clip ;
+} */
+.heropage{
+  position: absolute;
+  color:white;
+ margin-top: 100px;
+ margin-left: 100px;
+ 
+}
+.inside-heropage{
+  line-height:2;
+}
+.inside-heropage h1{
+  font-size: 40px;
+}
+.inside-heropage p{
+  font-size: 17px;
+}
+span{
+  color: teal;
+  font-weight: bold;
+
+}
+.line1{
+height: 2px;
+background-color:rgb(18, 241, 241);
+width: 12%;
+margin-left: 0px;
+margin-top: 0px;
+position: absolute;
+}
+
+.btn1{
+  margin-top: 30px;
+}
+.btn1 a{
+  background-color: teal;
+  color: white;
+  padding: 10px 25px;
+  text-decoration: none;
+  border-radius: 30px;
+}
+.btn1 a:hover{
+  background: black;
+  color: teal;
+}
+
+.btn1 i{
+  color:black;
+  padding: 0px 10px;
+}
+.btn1 i:hover{
+  color: white;
+}
+.poster{
+  margin-top: 130px;
+  margin-right: 10px;
+}
+.poster img{
+  height:320px;
+  border-radius: 100px;
+  float: right;
+  width: 900px;
+  
 }

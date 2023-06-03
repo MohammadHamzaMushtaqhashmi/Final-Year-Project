@@ -1,21 +1,17 @@
 import React from 'react';
-import Header from './Components/Header';
+import Home from './Components/Home';
+/*import Header from './Components/Header';
 import HeroSection from './Components/HeroSection';
 import MoviesCategory from './Components/MoviesCategory';
 import Footer from './Components/Footer';
-import './App.css';
+import './App.css';*/
 function App() {
   return (
     <div>
-      <Header />
-      <HeroSection />
-      <MoviesCategory title="Popular Movies" category="popular" />
-      <MoviesCategory title="Top Rated Movies" category="top_rated" />
-      <MoviesCategory title="Upcoming Movies" category="upcoming" />
-      <Footer/>
-    {/* Add other page content here */}
+      <Home />
+    {/* Add other page content here */} 
   </div>
   );
 }
 
-export default App;
+export default App; 

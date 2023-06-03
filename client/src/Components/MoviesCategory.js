@@ -1,13 +1,14 @@
 import React from 'react';
-import MoviesList from './MoviesList';
+import MovieList from './MoviesList';
 
-function MovieCategory({ title, category }) {
+function MovieCategories() {
   return (
-    <div className="movie-category">
-      <h2>{title}</h2>
-      <MoviesList category={category} />
+    <div>
+      <MovieList category="hollywood" />
+      <MovieList category="bollywood" />
+      {/* Add additional MovieList components here for other categories */}
     </div>
   );
 }
 
-export default MovieCategory;
+export default MovieCategories;

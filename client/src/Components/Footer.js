@@ -1,37 +1,30 @@
 import React from 'react';
-
-const footerStyles = {
-  padding: '20px',
-  backgroundColor: '#333',
-  color: 'white'
-};
-
-const ulStyles = {
-  listStyle: 'none',
-  margin: 0,
-  padding: 0,
-  display: 'flex'
-};
-
-const liStyles = {
-  margin: '0 10px'
-};
-
-const linkStyles = {
-  color: 'white',
-  textDecoration: 'none'
-};
-
+import '../CSS/footer.css';
 function Footer() {
   return (
-    <footer style={footerStyles}>
-      <ul style={ulStyles}>
-        <li style={liStyles}><a href="/about" style={linkStyles}>About</a></li>
-        <li style={liStyles}><a href="/contact" style={linkStyles}>Contact</a></li>
-        <li style={liStyles}><a href="/terms" style={linkStyles}>Terms of Service</a></li>
-      </ul>
-    </footer>
+    <div className="footer">
+    <div className="inside-footer">
+      <div className="footer-container">
+        <div className="logopart">
+          <h1>Movie Mate</h1>
+          <img src="images/logo/e.png" alt="" />
+        </div>
+        <div className="copyright">
+          <p>copyright © <span>Shmmi </span>,All Rights Reserved-2021.</p>
+        </div>
+        <div className="socials">
+          <i className="fab fa-facebook-square" />
+          <i className="fab fa-youtube" />
+          <i className="fab fa-instagram" />
+          <i className="fab fa-pinterest" />                    
+        </div>
+        <div className="btn4">
+          <a href>Subscribe Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
   );
-}
+};
 
 export default Footer;

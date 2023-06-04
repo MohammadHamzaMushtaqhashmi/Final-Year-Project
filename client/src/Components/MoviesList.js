@@ -61,7 +61,7 @@ function MoviesList({ category }) {
           {movies.map(movie => (
             <div key={movie.id} className="movie-card">
             <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title} style={{ height: '300px' }}/>
-            <h3 style={{ height: '40px' }}>{movie.title}</h3>
+            <h3 style={{ height: '40px',  zIndex: 1 }}>{movie.title}</h3>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <button onClick={() => addToWatchlist(movie)}>
                 Watchlist <span>+</span>

@@ -1,17 +1,12 @@
 import React from 'react';
+/*import { BrowserRouter, Route, Routes } from 'react-router-dom';*/
 import Home from './Components/Home';
-/*import Header from './Components/Header';
-import HeroSection from './Components/HeroSection';
-import MoviesCategory from './Components/MoviesCategory';
-import Footer from './Components/Footer';
-import './App.css';*/
+/*import SearchPage from './Components/SearchPage';*/
+
 function App() {
   return (
-    <div>
-      <Home />
-    {/* Add other page content here */} 
-  </div>
+    <Home />
   );
 }
 
-export default App; 
+export default App;

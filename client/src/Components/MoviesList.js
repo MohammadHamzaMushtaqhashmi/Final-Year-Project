@@ -5,7 +5,7 @@ import '../CSS/movieslist.css';
 const apiKey = '499d99db6ce23991d21afde0deede0f1';
 const baseUrl = 'https://api.themoviedb.org/3';
 
-function MoviesList({ category }) {
+function MoviesList({ category ,addToWatchlist}) {
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const playTrailer = movie => {

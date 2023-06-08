@@ -4,9 +4,7 @@ import HeroSection from '../Components/HeroSection';
 import MoviesList from '../Components/MoviesList';
 import Footer from '../Components/Footer';
 
-require('react-dom');
-window.React2 = require('react');
-console.log(window.React1 === window.React2);
+
 
 
 function Home({addToWatchlist}) {

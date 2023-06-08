@@ -1,11 +1,8 @@
+// In SearchResults.js
 import React from 'react';
 import '../CSS/movieslist.css';
 
-function SearchResults({ searchResults }) {
-  const addToWatchlist = (movie) => {
-    // Add your code here to handle adding a movie to the watchlist
-  };
-
+function SearchResults({ searchResults, addToWatchlist }) {
   const playTrailer = (movie) => {
     // Add your code here to handle playing the trailer for a movie
   };
@@ -21,7 +18,6 @@ function SearchResults({ searchResults }) {
 
   return (
     <div>
-      <h2>Search Results</h2>
       <div className="movies-list">
         <button className="scroll-button" onClick={() => handleScrollClick('left')}>
           {'<'}
@@ -52,14 +48,12 @@ function SearchResults({ searchResults }) {
 
 export default SearchResults;
 
-/*import React from 'react';
+/*
+// In SearchResults.js
+import React from 'react';
 import '../CSS/movieslist.css';
 
-function SearchResults({ searchResults }) {
-  const addToWatchlist = (movie) => {
-    // Add your code here to handle adding a movie to the watchlist
-  };
-
+function SearchResults({ searchResults, addToWatchlist }) {
   const playTrailer = (movie) => {
     // Add your code here to handle playing the trailer for a movie
   };

@@ -1,4 +1,14 @@
-
+/* In styles.css */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .content-wrapper {
+    flex: 1;
+  }
+  
 header{
     color:rgb(184, 179, 179);
     display: flex;

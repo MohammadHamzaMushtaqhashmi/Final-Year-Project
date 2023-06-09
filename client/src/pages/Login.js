@@ -10,11 +10,31 @@ function Login() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Handle login logic here
-    navigate('/'); // Navigate to the home page after successful login
+
+    // Send a POST request to the /login route on your Express server
+    const response = await fetch('/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+
+    // Handle the response from the server
+    if (response.ok) {
+      // Login was successful
+      // TODO: Redirect the user to another page or show a success message
+    } else {
+      // Login failed
+      // TODO: Show an error message to the user
+    }
   };
+  
 
   return (
     <>

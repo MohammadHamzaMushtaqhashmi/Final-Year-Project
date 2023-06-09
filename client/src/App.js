@@ -6,6 +6,7 @@ import WatchlistPage from './pages/WatchlistPage';
 import SearchResultsPage from './pages/SearchResultsPage';
 import Signup from './pages/Signup';
 import Login from './pages/Login'; // Import the Login page
+import './App.css';
 
 function App() {
   const [watchlist, setWatchlist] = useState([]);
@@ -15,15 +16,34 @@ function App() {
   };
 
   const removeFromWatchlist = (movieToRemove) => {
-    setWatchlist((prevWatchlist) => prevWatchlist.filter((movie) => movie.id !== movieToRemove.id));
+    setWatchlist((prevWatchlist) =>
+      prevWatchlist.filter((movie) => movie.id !== movieToRemove.id)
+    );
   };
 
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home watchlist={watchlist} addToWatchlist={addToWatchlist} />} />
-        <Route path="/WatchList" element={<WatchlistPage watchlist={watchlist} setWatchlist={setWatchlist} removeFromWatchlist={removeFromWatchlist} />} />
-        <Route path="/SearchResults" element={<SearchResultsPage addToWatchlist={addToWatchlist} />} />
+        <Route
+          path="/"
+          element={
+            <Home watchlist={watchlist} addToWatchlist={addToWatchlist} />
+          }
+        />
+        <Route
+          path="/WatchList"
+          element={
+            <WatchlistPage
+              watchlist={watchlist}
+              setWatchlist={setWatchlist}
+              removeFromWatchlist={removeFromWatchlist}
+            />
+          }
+        />
+        <Route
+          path="/SearchResults"
+          element={<SearchResultsPage addToWatchlist={addToWatchlist} />}
+        />
         <Route path="/signup" element={<Signup />} /> // Add a Route for the Signup page
         <Route path="/login" element={<Login />} /> // Add a Route for the Login page
       </Routes>
@@ -40,6 +60,9 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import WatchlistPage from './pages/WatchlistPage';
 import SearchResultsPage from './pages/SearchResultsPage';
+import Signup from './pages/Signup';
+import Login from './pages/Login'; // Import the Login page
+import './App.css'
 
 function App() {
   const [watchlist, setWatchlist] = useState([]);
@@ -51,6 +74,16 @@ function App() {
   const removeFromWatchlist = (movieToRemove) => {
     setWatchlist((prevWatchlist) => prevWatchlist.filter((movie) => movie.id !== movieToRemove.id));
   };
+  
+  function toggleTheme() {
+    const html = document.documentElement;
+    if (html.getAttribute('data-theme') === 'dark') {
+      html.setAttribute('data-theme', 'light');
+    } else {
+      html.setAttribute('data-theme', 'dark');
+    }
+  }
+
 
   return (
     <Router>
@@ -58,11 +91,11 @@ function App() {
         <Route path="/" element={<Home watchlist={watchlist} addToWatchlist={addToWatchlist} />} />
         <Route path="/WatchList" element={<WatchlistPage watchlist={watchlist} setWatchlist={setWatchlist} removeFromWatchlist={removeFromWatchlist} />} />
         <Route path="/SearchResults" element={<SearchResultsPage addToWatchlist={addToWatchlist} />} />
+        <Route path="/signup" element={<Signup />} /> // Add a Route for the Signup page
+        <Route path="/login" element={<Login />} /> // Add a Route for the Login page
       </Routes>
     </Router>
   );
 }
 
 export default App;*/
-
-

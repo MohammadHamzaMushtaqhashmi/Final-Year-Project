@@ -8,7 +8,9 @@ import {
   faSearch,
   faUserPlus,
   faSignInAlt,
-  faHome
+  faHome,
+  faMoon,
+  faSun // Import the faMoon and faSun icons
 } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
 import Menu from './Menu'; // Import the Menu component
@@ -16,6 +18,7 @@ import Menu from './Menu'; // Import the Menu component
 function Header() {
   const [showSearchInput, setShowSearchInput] = useState(false);
   const [showMenu, setShowMenu] = useState(false); // State to track whether to show the Menu component
+  const [isDarkMode, setIsDarkMode] = useState(false); // State to track whether dark mode is enabled
   const navigate = useNavigate();
 
   const handleSearchIconClick = () => {
@@ -30,6 +33,21 @@ function Header() {
   const handleCloseMenu = () => {
     setShowMenu(false); // Hide the Menu component when the user clicks on the close button
   };
+
+  const handleThemeToggleClick = () => {
+    toggleTheme(); // Call the toggleTheme function to switch between light and dark modes
+    setIsDarkMode(!isDarkMode); // Update the isDarkMode state variable
+  };
+
+  // Define the toggleTheme function directly in the Header component
+  function toggleTheme() {
+    const html = document.documentElement;
+    if (html.getAttribute('data-theme') === 'dark') {
+      html.setAttribute('data-theme', 'light');
+    } else {
+      html.setAttribute('data-theme', 'dark');
+    }
+  }
 
   return (
     <>
@@ -66,6 +84,11 @@ function Header() {
           </ul>
         </div>
         <div className="user">
+          {/* Add a new FontAwesomeIcon element for the moon/sun icon */}
+          <FontAwesomeIcon
+            icon={isDarkMode ? faSun : faMoon}
+            onClick={handleThemeToggleClick}
+          />
           <FontAwesomeIcon icon={faSearch} onClick={handleSearchIconClick} />
           <Link to="/login">
             <FontAwesomeIcon icon={faSignInAlt} /> Login
@@ -92,14 +115,18 @@ import {
   faSearch,
   faUserPlus,
   faSignInAlt,
-  faHome
+  faHome,
+  faMoon,
+  faSun // Import the faMoon and faSun icons
 } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
 import Menu from './Menu'; // Import the Menu component
 
+
 function Header() {
   const [showSearchInput, setShowSearchInput] = useState(false);
   const [showMenu, setShowMenu] = useState(false); // State to track whether to show the Menu component
+  const [isDarkMode, setIsDarkMode] = useState(false); // State to track whether dark mode is enabled
   const navigate = useNavigate();
 
   const handleSearchIconClick = () => {
@@ -109,12 +136,15 @@ function Header() {
 
   const handleMenuClick = () => {
     setShowMenu(true); // Show the Menu component when the user clicks on the Menu link
-    document.body.classList.add('menu-open'); // Add a class to the body element
   };
 
   const handleCloseMenu = () => {
     setShowMenu(false); // Hide the Menu component when the user clicks on the close button
-    document.body.classList.remove('menu-open'); // Remove the class from the body element
+  };
+
+  const handleThemeToggleClick = () => {
+    toggleTheme(); // Call the toggleTheme function to switch between light and dark modes
+    setIsDarkMode(!isDarkMode); // Update the isDarkMode state variable
   };
 
   return (
@@ -152,6 +182,11 @@ function Header() {
           </ul>
         </div>
         <div className="user">
+         
+          <FontAwesomeIcon
+            icon={isDarkMode ? faSun : faMoon}
+            onClick={handleThemeToggleClick}
+          />
           <FontAwesomeIcon icon={faSearch} onClick={handleSearchIconClick} />
           <Link to="/login">
             <FontAwesomeIcon icon={faSignInAlt} /> Login
@@ -159,19 +194,11 @@ function Header() {
         </div>
       </header>
 
-      {showMenu && ( // Conditionally render the Menu component based on the value of showMenu
-        <>
-          <div className="menu-overlay" onClick={handleCloseMenu}></div> // Overlay to close the menu when clicked outside
-          <div className={`menu-container ${showMenu ? 'open' : ''}`}>
-            <span className="menu-close-button" onClick={handleCloseMenu}>
-              ×
-            </span> // Close button to hide the Menu component
-            <Menu />
-          </div>
-        </>
-      )}
+     
+      <Menu isOpen={showMenu} onRequestClose={handleCloseMenu} />
     </>
   );
 }
 
 export default Header;*/
+

@@ -1,4 +1,166 @@
-/* In styles.css */
+/* In header.css */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .content-wrapper {
+    flex: 1;
+  }
+  
+  header {
+    color: rgb(184, 179, 179);
+    display: flex;
+    height: 10vh;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  #iconbar {
+    color: white;
+    font-size: 2rem;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  #iconbar:hover {
+    color: teal;
+  }
+  
+  .logo {
+    margin-left: 40px;
+    margin-top: 50px;
+  }
+  
+  .logo img {
+    height: 10vh;
+  }
+  
+  .logo h3 {
+    color: rgb(18, 241, 241);
+    font-size: 25px;
+    margin-top: -55px;
+    padding: 4px;
+    margin-left: 50px;
+  }
+  
+  .nav ul {
+    display: flex;
+  }
+  
+  .nav ul li {
+    list-style: none;
+  }
+  
+  .nav ul li a {
+    text-decoration: none;
+    padding: 0px 20px;
+    color: rgb(227, 238, 227);
+  }
+  
+  .nav ul li a:hover {
+    color: teal;
+    font-weight: bolder;
+  }
+  
+  .user {
+    cursor: pointer;
+    color: teal;
+    margin-top: 40px;
+    margin-right: 40px;
+  }
+  
+  .user a {
+    padding: 10px 30px;
+    margin: 20px;
+    color: white;
+    background-color: teal;
+    text-decoration: none;
+    border-radius: 10px;
+  }
+  
+  .user a:hover {
+    background-color: black;
+    color: teal;
+  }
+  
+  .user i {
+    font-size: 20px;
+    margin-right: 10px;
+  }
+  
+  .user h4 {
+    border-radius: 40px;
+    background: teal;
+    padding: 10px 20px;
+    margin-top: 40px;
+    margin-right: 40px;
+  }
+  
+  .user i {
+    padding: 0px 14px;
+  }
+  
+  /* Add a new style rule for the moon/sun icon */
+  .user svg:first-child {
+    margin-right: 20px; /* Adjust the margin as needed */
+  }
+  
+  .user h4:hover {
+    color: teal;
+    background: black;
+  }
+  
+  .user i {
+    padding: 0px 14px;
+  }
+  
+  .fa,
+  .fas {
+    font-weight: 900;
+  }
+  
+  .fa,
+  .far,
+  .fas {
+    font-family: "Font Awesome 5 Free";
+  }
+  
+  .fa,
+  .fab,
+  .fad,
+  .fal,
+  .far,
+  .fas {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+  }
+  
+  .search-results {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .search-result-card {
+    width: 300px;
+    margin: 10px;
+  }
+  
+  .search-result-card img {
+    width: 100%;
+  }
+  
+/* In styles.css 
 body {
     display: flex;
     flex-direction: column;
@@ -132,4 +294,4 @@ margin-top: 50px;
   .search-result-card img {
     width: 100%;
   }
-  
+  */

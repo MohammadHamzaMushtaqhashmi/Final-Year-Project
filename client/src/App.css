@@ -1,9 +1,37 @@
-body {
-  margin: 20px;
+/*body {
+  margin: 0px;
   background-color: #f5f5f5;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
+}*/
+body {
+  background-color: var(--background-color);
+  color: var(--primary-text-color);
+}
+
+.secondary-text {
+  color: var(--secondary-text-color);
+}
+
+.accent {
+  color: var(--accent-color);
+}
+
+:root {
+  /* Light mode colors */
+  --background-color: #FFFFFF;
+  --primary-text-color: #000000;
+  --secondary-text-color: #8E8E93;
+  --accent-color: #007AFF;
+}
+
+[data-theme="dark"] {
+  /* Dark mode colors */
+  --background-color: #1C1C1E;
+  --primary-text-color: #FFFFFF;
+  --secondary-text-color: #8E8E93;
+  --accent-color: #34C759;
 }

@@ -1,0 +1,64 @@
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  label {
+    margin-top: 10px;
+  }
+  
+  input {
+    margin-top: 5px;
+  }
+  
+  button {
+    margin-top: 10px;
+  }
+/* In SignUp.css */
+.signup-container {
+    display: flex;
+    margin-top: 50px; /* Add top margin to separate from header */
+    margin-bottom: 50px; /* Add bottom margin to separate from footer */
+    margin-left: 50px;
+  }
+  
+  .signup-form {
+    margin-right: auto;
+  }
+  
+  .signup-image {
+    margin-left: 150px;
+    position: relative; /* Set position to relative */
+    left: -100px; /* Move image to the left */
+  }
+  
+  .signup-image img {
+    height: 320px;
+    border-radius: 100px;
+    width: 900px;
+  }
+    /* In Login.css */
+.login-container {
+    display: flex;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-left: 50px;
+  }
+  
+  .login-form {
+    margin-right: auto;
+  }
+  
+  .login-image {
+    margin-left: 150px;
+    position: relative;
+    left: -100px;
+  }
+  
+  .login-image img {
+    height: 320px;
+    border-radius: 100px;
+    width: 900px;
+  }
+  

@@ -1,5 +1,5 @@
 // In App.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import WatchlistPage from './pages/WatchlistPage';
@@ -10,6 +10,7 @@ import './App.css';
 
 function App() {
   const [watchlist, setWatchlist] = useState([]);
+  const [loggedInUser, setLoggedInUser] = useState(null);
 
   const addToWatchlist = (movie) => {
     setWatchlist((prevWatchlist) => [...prevWatchlist, movie]);
@@ -21,13 +22,17 @@ function App() {
     );
   };
 
+  useEffect(() => {
+    console.log('loggedInUser:', loggedInUser);
+  }, [loggedInUser]);
+
   return (
     <Router>
       <Routes>
         <Route
           path="/"
           element={
-            <Home watchlist={watchlist} addToWatchlist={addToWatchlist} />
+            <Home watchlist={watchlist} addToWatchlist={addToWatchlist}  loggedInUser={loggedInUser} />
           }
         />
         <Route
@@ -45,7 +50,7 @@ function App() {
           element={<SearchResultsPage addToWatchlist={addToWatchlist} />}
         />
         <Route path="/signup" element={<Signup />} /> // Add a Route for the Signup page
-        <Route path="/login" element={<Login />} /> // Add a Route for the Login page
+        <Route path="/login" element={<Login setLoggedInUser={setLoggedInUser} />} />
       </Routes>
     </Router>
   );

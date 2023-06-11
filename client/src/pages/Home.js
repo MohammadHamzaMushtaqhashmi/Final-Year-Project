@@ -7,13 +7,14 @@ import Footer from '../Components/Footer';
 
 
 
-function Home({addToWatchlist}) {
+function Home({addToWatchlist , loggedInUser}) {
   return (
     <div>
       <div
         className="content-wrapper"
         style={{ margin: '10px', display: 'flex', flexDirection: 'column' }}>
-          <Header />
+          
+          <Header loggedInUser={loggedInUser} />
           <HeroSection />
           <MoviesList category="hollywood" addToWatchlist={addToWatchlist} />
           <MoviesList category="bollywood" addToWatchlist={addToWatchlist} />

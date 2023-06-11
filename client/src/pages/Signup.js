@@ -1,22 +1,25 @@
-// In Signup.js
+// Importing necessary modules and components
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
 import '../CSS/login.css';
 
+// Defining the Signup component
 function Signup() {
+  // Setting up state for the form inputs and error/success messages
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [successMessage, setSuccessMessage] = useState(''); // Add this line to manage a successMessage state variable
+  const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
 
+  // Defining a function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Send a POST request to the /signup route on your Express server
+    // Sending a POST request to the /signup route on the server
     const response = await fetch('http://localhost:3001/signup', {
       method: 'POST',
       headers: {
@@ -29,27 +32,25 @@ function Signup() {
       }),
     });
 
-    // Handle the response from the server
+    // Handling the response from the server
     if (response.ok) {
       // Signup was successful
-      // TODO: Redirect the user to another page or show a success message
 
-      // Add this code to update the successMessage state variable with an appropriate message
+      // Updating the successMessage state variable with an appropriate message
       setSuccessMessage('Sign up successful! Redirecting to home page...');
 
-      // Add this code to navigate to the home page after a delay
+      // Navigating to the home page after a delay
       setTimeout(() => {
         navigate('/');
       }, 3000);
     } else {
       // Signup failed
-      // TODO: Show an error message to the user
-
       const data = await response.json();
       setErrorMessage(data.error || 'An error occurred. Please try again.');
     }
   };
 
+  // Rendering the signup form with error/success messages
   return (
     <>
       <Header />
@@ -57,7 +58,7 @@ function Signup() {
         <div className="signup-form">
           <h1>Sign Up</h1>
           {errorMessage && <p>{errorMessage}</p>}
-          {successMessage && <p>{successMessage}</p>} 
+          {successMessage && <p>{successMessage}</p>}
           <form onSubmit={handleSubmit}>
             <label htmlFor="email">Email:</label>
             <input
@@ -95,5 +96,5 @@ function Signup() {
   );
 }
 
+// Exporting the Signup component as the default export
 export default Signup;
-

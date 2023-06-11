@@ -1,21 +1,23 @@
-
+/* Styling the container for the list of movies */
 .movies-list {
   display: flex;
   align-items: center;
 }
 
+/* Styling the container for the individual movie cards */
 .movies-container {
   display: flex;
   overflow-x: scroll;
-  -ms-overflow-style: none; 
+  -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
+/* Hiding the scrollbar in WebKit browsers */
 .movies-container::-webkit-scrollbar {
-  display: none; 
+  display: none;
 }
 
-
+/* Styling the individual movie cards */
 .movie-card {
   color: rgb(18, 241, 241);
   flex: 0 0 auto;
@@ -26,61 +28,66 @@
   background-color: #1a1a1a;
   cursor: pointer;
   transition: transform 0.2s;
-  box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+  box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 
+              0 2px 2px 0 rgba(0,0,0,.14), 
+              0 1px 5px 0 rgba(0,0,0,.12);
 }
+
+/* Styling the heading within each movie card */
 .movie-card h3 {
   font-family: Roboto, Helvetica, Arial, sans-serif;
   font-size: 1rem;
   font-weight: bold;
 }
 
+/* Styling the buttons within each movie card */
 .movie-card button {
   font-family: Roboto, Helvetica, Arial, sans-serif;
   font-size: 0.875rem;
-  font-weight: normal;
 }
 
-
+/* Styling the image within each movie card */
 .movie-card img {
-  width: 100%;
+    width:100%;
 }
-.movie-card button {
-  color: white;
-  background-color: black;
-}
+
+/* Styling the first button within each movie card */
 .movie-card button:nth-of-type(1) {
-  color: rgb(18, 241, 241);
-  border: none;
-  font-family: Roboto, Helvetica, Arial, sans-serif;
-  font-size: 0.875rem;
-  font-weight: 500;
-  line-height: 1.25rem;
+    color: rgb(18,241,241);
+    border:none;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: .875rem;
+    font-weight:500;
+    line-height:1.25rem; 
 }
 .movie-card button:nth-of-type(1):hover {
-  filter: brightness(120%);
+    filter:brightness(120%);
 }
 
+/* Styling the second button within each movie card */
 .movie-card button:nth-of-type(2) {
-  color: white;
-  border: none;
+    color:white;
+    border:none; 
 }
 .movie-card button:nth-of-type(2):hover {
-  filter: brightness(120%);
+    filter:brightness(120%);
 }
 
+/* Styling the hover state for all buttons within each movie card */
 .movie-card button:hover {
-  background-color: rgb(18, 241, 241);
+    background-color:rgb(18,241,241);
 }
 .movie-card button:hover {
-  filter: brightness(10%);
+    filter:brightness(10%);
 }
 
+/* Styling the scroll buttons */
 .scroll-button {
-  font-size: 24px;
+    font-size:24px; 
 }
 h2{
-  color: rgb(18, 241, 241);
-  font-size: 25px;
-  padding: 30px;
-  margin-left: 20px;
+    color:rgb(18,241,241);
+    font-size:25px; 
+    padding:30px; 
+    margin-left:20px; 
 }

@@ -1,4 +1,4 @@
-// In Header.js
+// Importing necessary modules and components
 import React, { useState } from 'react';
 import '../CSS/header.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,36 +10,42 @@ import {
   faSignInAlt,
   faHome,
   faMoon,
-  faSun // Import the faMoon and faSun icons
+  faSun,
 } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
-import Menu from './Menu'; // Import the Menu component
+import Menu from './Menu';
 
+// Defining the Header component
 function Header({ loggedInUser }) {
+  // Setting up state for showing/hiding elements and tracking dark mode
   const [showSearchInput, setShowSearchInput] = useState(false);
-  const [showMenu, setShowMenu] = useState(false); // State to track whether to show the Menu component
-  const [isDarkMode, setIsDarkMode] = useState(false); // State to track whether dark mode is enabled
+  const [showMenu, setShowMenu] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const navigate = useNavigate();
 
+  // Defining a function to handle clicks on the search icon
   const handleSearchIconClick = () => {
     setShowSearchInput(!showSearchInput);
     navigate('/SearchResults');
   };
 
+  // Defining a function to handle clicks on the menu link
   const handleMenuClick = () => {
-    setShowMenu(true); // Show the Menu component when the user clicks on the Menu link
+    setShowMenu(true);
   };
 
+  // Defining a function to handle closing the menu
   const handleCloseMenu = () => {
-    setShowMenu(false); // Hide the Menu component when the user clicks on the close button
+    setShowMenu(false);
   };
 
+  // Defining a function to handle clicks on the theme toggle icon
   const handleThemeToggleClick = () => {
-    toggleTheme(); // Call the toggleTheme function to switch between light and dark modes
-    setIsDarkMode(!isDarkMode); // Update the isDarkMode state variable
+    toggleTheme();
+    setIsDarkMode(!isDarkMode);
   };
 
-  // Define the toggleTheme function directly in the Header component
+  // Defining a function to toggle between light and dark modes
   function toggleTheme() {
     const html = document.documentElement;
     if (html.getAttribute('data-theme') === 'dark') {
@@ -49,6 +55,7 @@ function Header({ loggedInUser }) {
     }
   }
 
+  // Rendering the header with navigation links and user information
   return (
     <>
       <header>
@@ -84,7 +91,7 @@ function Header({ loggedInUser }) {
           </ul>
         </div>
         <div className="user">
-          {/* Add a new FontAwesomeIcon element for the moon/sun icon */}
+          {/* Rendering an icon for toggling between light and dark modes */}
           <FontAwesomeIcon
             icon={isDarkMode ? faSun : faMoon}
             onClick={handleThemeToggleClick}
@@ -103,11 +110,11 @@ function Header({ loggedInUser }) {
         </div>
       </header>
 
-      {/* Render the Menu component and pass in the necessary props */}
+      {/* Rendering the Menu component */}
       <Menu isOpen={showMenu} onRequestClose={handleCloseMenu} />
     </>
   );
 }
 
+// Exporting the Header component as the default export
 export default Header;
-

@@ -1,8 +1,10 @@
-// In MovieCategories.js
+// Importing necessary modules and components
 import React from 'react';
 import MoviesList from '../Components/MoviesList';
 
+// Defining the MovieCategories component
 function MovieCategories({ addToWatchlist }) {
+  // Rendering lists of movies from different categories
   return (
     <div>
       <MoviesList category="hollywood" addToWatchlist={addToWatchlist} />
@@ -12,20 +14,5 @@ function MovieCategories({ addToWatchlist }) {
   );
 }
 
+// Exporting the MovieCategories component as the default export
 export default MovieCategories;
-
-/*import React from 'react';
-import MoviesList from './MoviesList';
-
-
-function MovieCategories() {
-  return (
-    <div>
-      <MoviesList category="hollywood" />
-      <MoviesList category="bollywood" />
-      <MoviesList category="lollywood"/>
-    </div>
-  );
-}
-
-export default MovieCategories;*/

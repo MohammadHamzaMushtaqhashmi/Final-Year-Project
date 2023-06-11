@@ -1,9 +1,14 @@
+/*This code is for a Node.js server using the Express framework. It sets up a connection to a MySQL database and
+ defines routes for user authentication (signup and login).
+ Here’s an explanation of each line: */
+// Importing necessary modules
 import express from "express";
 import cors from "cors";
 import session from 'express-session';
 import mysql from 'mysql2';
 import bcrypt from 'bcrypt';
 
+// Creating a connection to the MySQL database
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -11,6 +16,7 @@ const connection = mysql.createConnection({
   database: 'moviemate'
 });
 
+// Connecting to the MySQL server
 connection.connect(function(err) {
   if (err) {
     throw err;
@@ -19,12 +25,14 @@ connection.connect(function(err) {
   }
 });
 
+// Setting the port for the server to listen on
 const PORT = process.env.PORT || 3001;
 const app = express();
 
-// Add this line to use the cors middleware
+// Using the cors middleware to allow cross-origin requests
 app.use(cors());
-// Add this after you initialize the app variable
+
+// Using the express-session middleware to enable session management
 app.use(session({
   secret: 'your secret here',
   resave: false,
@@ -32,61 +40,62 @@ app.use(session({
   cookie: { secure: true }
 }));
 
-// Add this line to use the express.json() middleware
+// Using the express.json() middleware to parse JSON request bodies
 app.use(express.json());
 
+// Starting the server and listening on the specified port
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
 
+// Defining a GET route for the /api endpoint that returns a JSON response
 app.get("/api", (req, res) => {
   res.json({ message: "Hello from server!" });
 });
 
-// In index.js
+// Defining a POST route for the /signup endpoint that handles user registration
 app.post('/signup', (req, res) => {
-  // Get the user data from the request body
+  // Getting the user data from the request body
   const { username, email, password } = req.body;
 
-  // TODO: Validate the user data
+  // Validating the user data
   if (!username || !email || !password) {
-    // Send an error response if any of the fields are missing
+    // Sending an error response if any of the fields are missing
     res.status(400).json({ error: 'Missing username, email, or password' });
     return;
   }
 
-  // Hash the password before storing it in the database
+  // Hashing the password before storing it in the database
   const hashedPassword = bcrypt.hashSync(password, 10);
 
-  // Insert the user data into the database
+  // Inserting the user data into the database
   connection.query(
     'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
     [username, email, hashedPassword],
     (error, results) => {
       if (error) {
-        // Handle errors
+        // Handling errors
         res.status(500).json({ error });
       } else {
-        // Send a success response
+        // Sending a success response
         res.json({ message: 'User created successfully' });
       }
     }
   );
 });
-// In index.js
+
+// Defining a POST route for the /login endpoint that handles user authentication
 app.post('/login', (req, res) => {
-  // Get the user data from the request body
+  // Getting the user data from the request body
   const { email, password } = req.body;
 
-  // TODO: Validate the user data
-
-  // Check if a user with the given email address exists in the database
+  // Checking if a user with the given email address exists in the database
   connection.query(
     'SELECT * FROM users WHERE email = ?',
     [email],
     (error, results) => {
       if (error) {
-        // Handle errors
+        // Handling errors
         res.status(500).json({ error });
       } else if (results.length === 0) {
         // No user with the given email address was found
@@ -95,16 +104,13 @@ app.post('/login', (req, res) => {
         // A user with the given email address was found
         const user = results[0];
 
-        // Check if the given password matches the hashed password in the database
+        // Checking if the given password matches the hashed password in the database
         if (bcrypt.compareSync(password, user.password)) {
           // Password is correct
 
-          // TODO: Create a session for the user and send a success response
-          req.session.user = user; // Set a session variable for the logged-in user
-          // Add this line to log the value of user before sending it back to the client
-          console.log('user:', user);
+          // Creating a session for the user and sending a success response
+          req.session.user = user; // Setting a session variable for the logged-in user
 
-          // Update this line to send back the logged-in user's data in the response
           res.json({ message: 'Login successful', user });
         } else {
           // Password is incorrect
@@ -115,55 +121,3 @@ app.post('/login', (req, res) => {
   );
 });
 
-/*
-// In index.js
-app.post('/login', (req, res) => {
-  // Get the user data from the request body
-  const { email, password } = req.body;
-  if (bcrypt.compareSync(password, user.password)) {
-    // Password is correct
-
-    // TODO: Create a session for the user and send a success response
-    req.session.user = user; // Set a session variable for the logged-in user
-
-    // Update this line to send back the logged-in user's data in the response
-    res.json({ message: 'Login successful', user });
-  } else {
-    // Password is incorrect
-    res.status(401).json({ error: 'Invalid email or password' });
-  }
-
-  // TODO: Validate the user data
-
-  // Check if a user with the given email address exists in the database
-  connection.query(
-    'SELECT * FROM users WHERE email = ?',
-    [email],
-    (error, results) => {
-      if (error) {
-        // Handle errors
-        res.status(500).json({ error });
-      } else if (results.length === 0) {
-        // No user with the given email address was found
-        res.status(401).json({ error: 'Invalid email or password' });
-      } else {
-        // A user with the given email address was found
-        const user = results[0];
-
-        // Check if the given password matches the hashed password in the database
-        if (bcrypt.compareSync(password, user.password)) {
-          // Password is correct
-
-          // TODO: Create a session for the user and send a success response
-          req.session.user = user; // Set a session variable for the logged-in user
-          res.json({ message: 'Login successful' }); // Send a success response
-
-        } else {
-          // Password is incorrect
-          res.status(401).json({ error: 'Invalid email or password' });
-        }
-      }
-    }
-  );
-});
-*/

@@ -11,7 +11,7 @@ function Footer() {
         <div className="footer-container">
           <div className="logopart">
             <h1>Movie Mate</h1>
-            <img src="images/logo/e.png" alt="" />
+            <img src="./images/logo.jpg" alt="" />
           </div>
           <div className="copyright">
             <p>

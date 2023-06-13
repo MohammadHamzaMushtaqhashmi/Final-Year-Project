@@ -33,20 +33,21 @@ body {
   }
   
   .logo {
-    margin-left: 40px;
-    margin-top: 50px;
+    margin-left: 20px;
+    margin-top: 40px;
   }
   
   .logo img {
     height: 10vh;
+    margin-left: 2px;
   }
   
   .logo h3 {
-    color: rgb(18, 241, 241);
+    color: teal;
     font-size: 25px;
-    margin-top: -55px;
+    margin-top: -65px;
     padding: 4px;
-    margin-left: 50px;
+    margin-left: 60px;
   }
   
   .nav ul {
@@ -60,11 +61,11 @@ body {
   .nav ul li a {
     text-decoration: none;
     padding: 0px 20px;
-    color: rgb(227, 238, 227);
+    color: teal;
   }
   
   .nav ul li a:hover {
-    color: teal;
+    color: rgb(235, 154, 55);
     font-weight: bolder;
   }
   

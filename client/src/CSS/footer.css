@@ -13,10 +13,13 @@
     margin-top: -50px;
 }
 .logopart h1{
-    color:rgb(18, 241, 241);
+    color:teal;
 font-size: 25px;
-margin-top: 40px;
-margin-left: 120px;
+margin-top: 50px;
+margin-left: 130px;
+}
+.logopart img{
+    margin-bottom: 20px;
 }
 .footer-container{
     display: flex;

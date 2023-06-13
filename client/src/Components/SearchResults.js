@@ -1,4 +1,4 @@
-// Importing necessary modules
+ // Importing necessary modules
 import React from 'react';
 import '../CSS/movieslist.css';
 

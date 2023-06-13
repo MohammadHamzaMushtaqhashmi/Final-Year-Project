@@ -1,7 +1,7 @@
 /* Styling the container for the hero section */
 .heropage {
   position: absolute;
-  color: rgb(18, 241, 241);
+  color: teal;
   margin-top: 100px;
   margin-left: 100px;
 }
@@ -31,7 +31,7 @@ span {
 /* Styling the line within the inner container */
 .line1 {
   height: 2px;
-  background-color: rgb(18, 241, 241);
+  background-color: teal;
   width: 12%;
   margin-left: 0px;
   margin-top: 0px;

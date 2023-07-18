@@ -42,7 +42,7 @@ function Login({ setLoggedInUser }) {
       // Navigating to the home page after a delay
       setTimeout(() => {
         navigate('/');
-      }, 3000);
+      }, 10000);
     } else {
       // Login failed
       const data = await response.json();

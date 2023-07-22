@@ -7,14 +7,7 @@
   max-width: 500px;
   height: 100%;
   background-color: rgb(145, 143, 143);
- /* transform: translateX(100%);
-  transition: transform 0.3s ease-in-out;*/
 }
-
-/* Styling the open state for the menu container */
-/*.menu-container.open {
-  transform: translateX(0);
-}*/
 
 /* Styling the close button for the menu */
 .menu-close-button {
@@ -23,22 +16,10 @@
   left: 10px;
 }
 
-/* Styling the overlay for the menu */
-/*.menu-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-}*/
-
 /* Styling the container for the menu contents */
 .container {
     display:block;
-    /*flex-wrap:wrap;*/
     justify-content:space-between;
-    /*align-items:flex-start; /* Align items to the top */
     padding-top:20px; 
 }
 
@@ -61,13 +42,59 @@
     color:black; 
 }
 
-/* Add styles for each column */
-/*.column {
-    /*flex-basis:calc(33.33% -20px); /* Set the width of each column */
-    /*margin-right:20px; /* Add some margin between columns 
-}*/
 .column{
   display: block;
   padding-right: 2px;
   margin: 5px;
+}
+
+/* Add styles for the modal content */
+.modal-content {
+  top: '50%';
+  left: '50%';
+  right: 'auto';
+  bottom: 'auto';
+  margin-right: '-50%';
+  transform: 'translate(-50%, -50%)';
+  width: '80%';
+  height: '80%';
+  opacity: 0;
+  transition: opacity 0.25s ease-in-out;
+}
+
+/* Add styles for the modal content when it is opened */
+.modal-content.open {
+  opacity: 1;
+}
+/* Add styles for the modal content */
+.modal-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Add styles for the modal content when it is opened */
+.modal-content.open {
+  opacity: 1;
+}
+
+/* Add styles for the close button */
+.modal-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  background-color: transparent;
+  border: 'none';
+  color: '#fff';
+}
+
+/* Add styles for the iframe element */
+.modal-iframe {
+  position: 'absolute';
+  top: 0;
+  left: 0;
+  width: '100%';
+  height: '100%';
+  overflow: 'hidden';
 }

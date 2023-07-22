@@ -1,6 +1,8 @@
 // Importing necessary modules and components
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+import Modal from 'react-modal'; // Import the Modal component from the react-modal library
 import '../CSS/movieslist.css';
 
 // Defining constants for the API key and base URL
@@ -9,13 +11,41 @@ const baseUrl = 'https://api.themoviedb.org/3';
 
 // Defining the MoviesList component
 function MoviesList({ category, addToWatchlist }) {
-  // Setting up state for the list of movies and selected movie
+  // Setting up state for the list of movies, selected movie, and trailer video
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [trailerVideo, setTrailerVideo] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Defining a function to play the trailer for a movie
-  const playTrailer = (movie) => {
+  const playTrailer = async (movie) => {
+    setIsLoading(true);
     setSelectedMovie(movie);
+
+    // Fetching the videos for the selected movie from the TMDb API
+    const response = await axios.get(
+      `${baseUrl}/movie/${movie.id}/videos`,
+      {
+        params: {
+          api_key: apiKey,
+        },
+      }
+    );
+
+    // Finding the first video with type "Trailer"
+    const trailer = response.data.results.find(
+      (video) => video.type === 'Trailer' && video.site === 'YouTube'
+    );
+
+    // Setting the trailer video state
+    setTrailerVideo(trailer);
+    setIsLoading(false);
+  };
+
+  // Defining a function to close the trailer modal
+  const closeTrailer = () => {
+    setSelectedMovie(null);
+    setTrailerVideo(null);
   };
 
   // Using an effect hook to fetch data from the API when the component mounts or the category changes
@@ -56,7 +86,7 @@ function MoviesList({ category, addToWatchlist }) {
     }
   };
 
-  // Rendering the list of movies with scroll buttons
+  // Rendering the list of movies with scroll buttons and a modal to display the trailer
   return (
     <div>
       <h2>{category}</h2>
@@ -67,12 +97,14 @@ function MoviesList({ category, addToWatchlist }) {
         <div className={`movies-container movies-container-${category}`}>
           {movies.map((movie) => (
             <div key={movie.id} className="movie-card">
-              <img
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                alt={movie.title}
-                style={{ height: '300px' }}
-              />
-              <h3 style={{ height: '40px', zIndex: 1 }}>{movie.title}</h3>
+              <Link to={`/movie/${movie.id}`}>
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  alt={movie.title}
+                  style={{ height: '300px' }}
+                />
+                <h3 style={{ height: '40px', zIndex: 1 }}>{movie.title}</h3>
+              </Link>
               <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <button onClick={() => addToWatchlist(movie)}>
                   Watchlist <span>+</span>
@@ -88,6 +120,83 @@ function MoviesList({ category, addToWatchlist }) {
           {'>'}
         </button>
       </div>
+      {/* Rendering a modal to display the trailer video */}
+      {trailerVideo && (
+        <>
+          <Modal
+            isOpen={true}
+            onRequestClose={closeTrailer}
+            style={{
+              overlay: {
+                backgroundColor: 'rgba(0, 0, 0, 0.75)',
+              },
+              content: {
+                top: '50%',
+                left: '50%',
+                right: 'auto',
+                bottom: 'auto',
+                marginRight: '-50%',
+                transform: 'translate(-50%, -50%)',
+                width: '80%',
+                height: '80%',
+                padding: 0,
+                overflow : 'hidden',
+              },
+            }}
+          >
+            <div
+              className={`modal-content ${trailerVideo ? 'open' : ''}`}
+              style={{ position: 'relative', width: '100%', height: '100%' }} // Add styles to make the div fill its parent container
+            >
+              {isLoading && (
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
+                  <div className="loader"></div>
+                </div>
+              )}
+              <iframe
+                src={`https://www.youtube.com/embed/${trailerVideo.key}`}
+                title={trailerVideo.name}
+                allowFullScreen
+                style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                }}
+              />
+            </div>
+          </Modal>
+          
+          <button
+            onClick={closeTrailer}
+            onMouseEnter={(e) => (e.target.style.backgroundColor = '#000')}
+            onMouseLeave={(e) => (e.target.style.backgroundColor = 'grey')}
+            style={{
+              position: 'fixed',
+              top: 10,
+              right: 10,
+              fontSize: '24px',
+              backgroundColor: 'grey',
+              border: 'none',
+              color: '#fff',
+            }}
+          >
+            ×
+          </button>
+        </>
+      )}
     </div>
   );
 }

@@ -177,6 +177,7 @@ function MoviesList({ category, addToWatchlist }) {
                 }}
               />
             </div>
+
           </Modal>
           
           <button

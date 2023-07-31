@@ -1,9 +1,8 @@
 // Importing necessary modules and components
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Header from '../Components/Header';
-import Footer from '../Components/Footer';
-import '../CSS/login.css'
+import { Link } from 'react-router-dom';
+import '../CSS/login.css';
 
 // Defining the Login component
 function Login({ setLoggedInUser }) {
@@ -42,7 +41,7 @@ function Login({ setLoggedInUser }) {
       // Navigating to the home page after a delay
       setTimeout(() => {
         navigate('/');
-      }, 10000);
+      }, 1000);
     } else {
       // Login failed
       const data = await response.json();
@@ -50,13 +49,39 @@ function Login({ setLoggedInUser }) {
     }
   };
 
-  // Rendering the login form with error/success messages
+  // Defining a function to handle clicks on the "Login with Facebook" button
+  const handleFacebookLoginClick = () => {
+    FB.login(function(response) {
+      if (response.authResponse) {
+        console.log('User logged in successfully!');
+
+        // Retrieving the user's name and profile picture from Facebook
+        FB.api('/me', { fields: 'name,picture' }, function(response) {
+          // Updating the loggedInUser state variable with the user's information
+          setLoggedInUser({
+            name: response.name,
+            profilePicture: response.picture.data.url,
+          });
+
+          // Navigating to the home page
+          navigate('/');
+        });
+      } else {
+        console.error('User cancelled login or did not fully authorize.');
+      }
+    });
+  };
+
+  // Rendering the login form with error/success messages and a "Login with Facebook" button
   return (
-    <>
-      <Header />
+    <> 
+    <div className="logo">
+    <img src="../images/MovieMate-icon.png" alt="logo" />
+    <h3>MovieMate</h3>
+  </div>
       <div className="login-container">
         <div className="login-form">
-          <h1>Login</h1>
+          <h1>Sign in to MovieMate</h1>
           {errorMessage && <p>{errorMessage}</p>}
           {successMessage && <p>{successMessage}</p>}
           <form onSubmit={handleSubmit}>
@@ -76,20 +101,19 @@ function Login({ setLoggedInUser }) {
               onChange={(event) => setPassword(event.target.value)}
             />
             <br />
-            <button type="submit">Login</button>
+            <button type="submit">Sign in</button>
           </form>
-        </div>
-        <div className="login-image">
-          <img src="./images/cover.jpg" alt="cover" />
+          <button onClick={handleFacebookLoginClick}><i className="fab fa-facebook-square"></i> Sign in with Facebook </button>
+          <p>
+            Don't have an account?{' '}
+            <Link to="/signup">Sign up</Link>
+          </p>
         </div>
       </div>
-      <Footer />
+
     </>
   );
 }
-
 // Exporting the Login component as the default export
 export default Login;
-
-
 

@@ -1,7 +1,7 @@
 /* Styling the container for the hero section */
 .heropage {
   position: absolute;
-  color: teal;
+  color: honeydew;
   margin-top: 100px;
   margin-left: 100px;
 }
@@ -24,7 +24,7 @@
 
 /* Styling the span element within the inner container */
 span {
-  color: teal;
+  color: honeydew;
   font-weight: bold;
 }
 

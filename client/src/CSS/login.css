@@ -50,6 +50,10 @@ button {
 /* Styling the container for the login page */
 .login-container {
     display:flex; 
+    flex-direction: column;
+    align-items: center;
+    top: 0px;
+    right: 50%;
     margin-top:50px; 
     margin-bottom:50px; 
     margin-left:50px; 
@@ -57,19 +61,59 @@ button {
 
 /* Styling the form within the login container */
 .login-form {
-    margin-right:auto; 
+  position: relative;
+  width: 100%;
+  max-width: 488px;
+  padding: 64px;
+  margin: 0;
+  box-sizing: border-box;
+  border-radius: 32px;
+  background-color: honeydew;
 }
 
-/* Styling the image within the login container */
-.login-image {
-    margin-left:150px; 
-    position:relative; 
-    left:-100px; 
-}
 
-/* Styling the img element within the login image */
-.login-image img {
-    height:320px; 
-    border-radius:100px; 
-    width:900px; 
+
+form{
+  display: block;
+ box-sizing: border-box;
+ 
+}
+input{
+box-shadow :none !important;
+outline :0 !important;
+-webkit-appearance :none;
+margin :0;
+box-sizing :border-box;
+-webkit-tap-highlight-color :rgba(0,0,0,0);
+background :#FFF;
+color :#353030;
+height :48px;
+padding :0 16px;
+display :block;
+width :100%;
+border-radius :8px;
+border :1px solid transparent;
+transition :0.3s;
+font-size :16px;
+border-color:#FE4066;;
+}
+label{
+color:#353030;;
+font-family:"Helvetica Neue", "Helvetica", "Arial", "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif !important;;
+box-sizing:border-box;;
+-webkit-tap-highlight-color:rgba(0, 0, 0, 0);;
+position:relative;;
+display:block;;
+}
+button{
+  width: 100%;
+  margin-top: 48px;
+  border-radius: 6px;
+  color: #FFF;
+  background: #FE4066;
+  transition: 0.3s;
+  line-height: 48px;
+  text-align: center;
+  display: block;
+  opacity: 0.3;
 }

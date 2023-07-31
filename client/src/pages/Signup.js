@@ -42,7 +42,7 @@ function Signup() {
       // Navigating to the home page after a delay
       setTimeout(() => {
         navigate('/');
-      }, 3000);
+      }, 1000);
     } else {
       // Signup failed
       const data = await response.json();
@@ -50,13 +50,46 @@ function Signup() {
     }
   };
 
-  // Rendering the signup form with error/success messages
+  // Defining a function to handle clicks on the "Sign up with Facebook" button
+  const handleFacebookSignupClick = () => {
+    FB.login(function(response) {
+      if (response.authResponse) {
+        console.log('User signed up successfully!');
+
+        // Retrieving the user's name and email from Facebook
+        FB.api('/me', { fields: 'name,email' }, function(response) {
+          // Sending a POST request to the /signup route on the server
+          fetch('http://localhost:3001/signup', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              username: response.name,
+              email: response.email,
+              password: '',
+            }),
+          });
+
+          // Navigating to the home page
+          navigate('/');
+        });
+      } else {
+        console.error('User cancelled signup or did not fully authorize.');
+      }
+    });
+  };
+
+  // Rendering the signup form with error/success messages and a "Sign up with Facebook" button
   return (
     <>
-      <Header />
-      <div className="signup-container">
-        <div className="signup-form">
-          <h1>Sign Up</h1>
+      <div className="logo">
+    <img src="../images/MovieMate-icon.png" alt="logo" />
+    <h3>MovieMate</h3>
+  </div>
+      <div className="login-container">
+        <div className="login-form">
+          <h1>Sign Up to MovieMate</h1>
           {errorMessage && <p>{errorMessage}</p>}
           {successMessage && <p>{successMessage}</p>}
           <form onSubmit={handleSubmit}>
@@ -86,15 +119,15 @@ function Signup() {
             <br />
             <button type="submit">Sign Up</button>
           </form>
-        </div>
-        <div className="signup-image">
-          <img src="./images/cover.jpg" alt="cover" />
+
+          {/* Rendering a "Sign up with Facebook" button */}
+          <button onClick={handleFacebookSignupClick}>Sign up with Facebook</button>
         </div>
       </div>
-      <Footer />
     </>
   );
 }
 
 // Exporting the Signup component as the default export
 export default Signup;
+

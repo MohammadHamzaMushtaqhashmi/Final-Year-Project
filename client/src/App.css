@@ -13,16 +13,16 @@ body {
 
 :root {
   /* Light mode colors */
-  --background-color: #FFFFFF;
-  --primary-text-color: #000000;
-  --secondary-text-color: #8E8E93;
-  --accent-color: #007AFF;
+  --background-color: #888578ff;
+  --primary-text-color: #AEB8B7ff;
+  --secondary-text-color: #161116ff;
+  --accent-color: #1C2430ff;
 }
 
 [data-theme="dark"] {
   /* Dark mode colors */
-  --background-color: #1f2028;;
-  --primary-text-color: #FFFFFF;
-  --secondary-text-color: #8E8E93;
-  --accent-color: #34C759;
+  --background-color: #161116ff;
+  --primary-text-color: #AEB8B7ff;
+  --secondary-text-color: #6E746Dff;
+  --accent-color: #1C2430ff;
 }

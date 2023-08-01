@@ -101,7 +101,7 @@ function Login({ setLoggedInUser }) {
               onChange={(event) => setPassword(event.target.value)}
             />
             <br />
-            <button type="submit">Sign in</button>
+            <button className='button' type="submit">Sign in</button>
           </form>
           <button onClick={handleFacebookLoginClick}><i className="fab fa-facebook-square"></i> Sign in with Facebook </button>
           <p>

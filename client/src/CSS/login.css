@@ -105,7 +105,7 @@ box-sizing:border-box;;
 position:relative;;
 display:block;;
 }
-button{
+.button{
   width: 100%;
   margin-top: 48px;
   border-radius: 6px;

@@ -9,7 +9,7 @@ body {
   flex: 1;
 }
 header {
-  color: rgb(184, 179, 179);
+  color: rgb(235, 144, 17);
   display: flex;
   height: 10vh;
   width: 100%;
@@ -57,11 +57,11 @@ header {
 .nav ul li a {
   text-decoration: none;
   padding: 0px 20px;
-  color: honeydew;
+  color: rgb(249, 249, 249);
 }
 
 .nav ul li a:hover{
-color :rgb(235,154,55);
+color :rgb(55, 205, 235);
 font-weight:bolder
 }
 .user{

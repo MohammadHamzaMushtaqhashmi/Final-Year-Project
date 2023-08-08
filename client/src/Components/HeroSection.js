@@ -28,11 +28,11 @@ function HeroSection() {
 const settings = {
   dots: true,
   infinite: true,
-  speed: 500,
+  speed: 800,
   slidesToShow: 1,
   slidesToScroll: 1,
   autoplay: true,
-  autoplaySpeed: 3000,
+  autoplaySpeed: 2000,
 };
 // Rendering the hero section with a carousel of movie posters
 return (
@@ -40,12 +40,14 @@ return (
     {movies && (
       <Slider {...settings}>
         {movies.map((movie) => (
-          <div key={movie.id}>
-            <img
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt={movie.title}
-            />
-          </div>
+          movie.poster_path && (
+            <div key={movie.id}>
+              <img
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                alt={movie.title}
+              />
+            </div>
+          )
         ))}
       </Slider>
     )}

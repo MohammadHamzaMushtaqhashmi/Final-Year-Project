@@ -1,3 +1,64 @@
+// Importing necessary modules and components
+import React, { useState, useEffect } from 'react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import '../CSS/hero.css';
+
+// Defining the HeroSection component
+function HeroSection() {
+  // Setting up state for the movie data
+  const [movies, setMovies] = useState([]);
+
+  // Defining a function to fetch movie data from the TMDB API
+  const fetchMovies = async () => {
+    const response = await fetch(
+      'https://api.themoviedb.org/3/movie/popular?api_key=499d99db6ce23991d21afde0deede0f1'
+    );    
+    const data = await response.json();
+    setMovies(data.results);
+  };
+
+  // Fetching movie data when the component mounts
+  useEffect(() => {
+    fetchMovies();
+  }, []);
+
+  // Defining settings for the Slider component
+const settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 3000,
+};
+// Rendering the hero section with a carousel of movie posters
+return (
+  <section className="hero-section">
+    {movies && (
+      <Slider {...settings}>
+        {movies.map((movie) => (
+          <div key={movie.id}>
+            <img
+              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+              alt={movie.title}
+            />
+          </div>
+        ))}
+      </Slider>
+    )}
+  </section>
+);
+
+
+}
+
+// Exporting the HeroSection component as the default export
+export default HeroSection;
+
+/*
 // Importing necessary modules
 import React from 'react';
 import 'slick-carousel/slick/slick.css';
@@ -34,3 +95,4 @@ function HeroSection() {
 
 // Exporting the HeroSection component as the default export
 export default HeroSection;
+*/

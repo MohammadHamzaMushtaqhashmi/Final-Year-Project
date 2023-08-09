@@ -92,17 +92,17 @@ outline :0 !important;
 margin :0;
 box-sizing :border-box;
 -webkit-tap-highlight-color :rgba(0,0,0,0);
-background :#FFF;
-color :#353030;
+background :#d19393;
+color :#080808;
 height :48px;
 padding :0 16px;
 display :block;
 width :100%;
 border-radius :8px;
-border :1px solid transparent;
-transition :0.3s;
+border :1px solid ;
+/*transition :0.3s;*/
 font-size :16px;
-border-color:#FE4066;;
+border-color:#ff1645;;
 }
 label{
 color:#353030;;

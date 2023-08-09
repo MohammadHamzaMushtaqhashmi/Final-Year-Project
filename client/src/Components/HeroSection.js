@@ -37,12 +37,13 @@ const settings = {
 // Rendering the hero section with a carousel of movie posters
 return (
   <section className="hero-section">
+  
     {movies && (
       <Slider {...settings}>
         {movies.map((movie) => (
           movie.poster_path && (
-            <div key={movie.id}>
-              <img
+            <div className='img' key={movie.id}>
+              <img className='img1'
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 alt={movie.title}
               />

@@ -80,7 +80,7 @@ function Signup() {
 
   // Rendering the signup form with error/success messages and a "Sign up with Facebook" button
   return (
-    <>
+    <div className='signtop'>
       <div className="logo">
     <img src="../images/MovieMate-icon.png" alt="logo" />
     <h3>MovieMate</h3>
@@ -122,7 +122,7 @@ function Signup() {
           <button onClick={handleFacebookSignupClick}>Sign up with Facebook</button>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

@@ -11,7 +11,7 @@ label {
 }
 
 /* Styling the input element within the form */
-input {
+/*input {
   margin-top: 5px;
 }
 
@@ -26,6 +26,10 @@ button {
     margin-top:50px; /* Add top margin to separate from header */
     margin-bottom:50px; /* Add bottom margin to separate from footer */
     margin-left:50px; 
+}
+.signtop{
+  background-image: linear-gradient(#0F3443, #2bc585);
+  
 }
 
 /* Styling the form within the sign-up container */
@@ -55,8 +59,11 @@ button {
     top: 0px;
     right: 50%;
     margin-top:50px; 
-    margin-bottom:50px; 
+    margin-bottom:5px; 
     margin-left:50px; 
+}
+.logintop{
+  background-image: linear-gradient(#0F3443, #2bc585);
 }
 
 /* Styling the form within the login container */

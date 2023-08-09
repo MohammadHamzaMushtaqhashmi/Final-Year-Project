@@ -5,8 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--background-color);
-  color: var(--primary-text-color);
+  background-image: linear-gradient( #0F3443, #2bc585);
+/*  background-color: var(--background-color);
+  color: var(--primary-text-color);*/
 }
 
 code {
@@ -22,13 +23,13 @@ code {
   color: var(--accent-color);
 }
 
-:root {
-  /* Light mode colors */
+/*:root {
+  /* Light mode colors 
   --background-color: #888578ff;
   --primary-text-color: #AEB8B7ff;
   --secondary-text-color: #161116ff;
   --accent-color: #1C2430ff;
-}
+}*/
 
 [data-theme="dark"] {
   /* Dark mode colors */

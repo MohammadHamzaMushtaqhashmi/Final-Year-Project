@@ -74,7 +74,7 @@ function Login({ setLoggedInUser }) {
 
   // Rendering the login form with error/success messages and a "Login with Facebook" button
   return (
-    <> 
+    <div className='logintop'> 
     <div className="logo">
     <img src="../images/MovieMate-icon.png" alt="logo" />
     <h3>MovieMate</h3>
@@ -111,7 +111,7 @@ function Login({ setLoggedInUser }) {
         </div>
       </div>
 
-    </>
+    </div>
   );
 }
 // Exporting the Login component as the default export

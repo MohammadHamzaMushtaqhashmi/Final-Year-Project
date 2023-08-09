@@ -43,7 +43,8 @@ return (
         {movies.map((movie) => (
           movie.poster_path && (
             <div className='img' key={movie.id}>
-              <img className='img1'
+              <img className='img1
+              '
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 alt={movie.title}
               />

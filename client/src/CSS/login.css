@@ -6,14 +6,14 @@ form {
 }
 
 /* Styling the label element within the form */
-label {
+/*label {
   margin-top: 10px;
-}
+}*/
 
 /* Styling the input element within the form */
 /*input {
   margin-top: 5px;
-}
+}*/
 
 /* Styling the button element within the form */
 button {
@@ -21,11 +21,16 @@ button {
 }
 
 /* Styling the container for the sign-up page */
-.signup-container {
+/*.signup-container {
     display:flex; 
-    margin-top:50px; /* Add top margin to separate from header */
-    margin-bottom:50px; /* Add bottom margin to separate from footer */
-    margin-left:50px; 
+    /*margin-top:10px; /* Add top margin to separate from header */
+    /*margin-bottom:50px; /* Add bottom margin to separate from footer */
+   /* margin-left:50px; 
+}*/
+.signtop{
+background-image: linear-gradient(#0F3443, #2bc585);
+height: 900px;
+margin-top: 0px;
 }
 .signtop{
   background-image: linear-gradient(#0F3443, #2bc585);
@@ -33,9 +38,9 @@ button {
 }
 
 /* Styling the form within the sign-up container */
-.signup-form {
+/*.signup-form {
     margin-right:auto; 
-}
+}*/
 
 /* Styling the image within the sign-up container */
 .signup-image {
@@ -46,7 +51,7 @@ button {
 
 /* Styling the img element within the sign-up image */
 .signup-image img {
-    height:320px; 
+    height:20px; 
     border-radius:100px; 
     width:900px; 
 }
@@ -95,6 +100,9 @@ box-sizing :border-box;
 background :#d19393;
 color :#080808;
 height :48px;
+background :#FFF;
+color :#353030;
+height :30px;
 padding :0 16px;
 display :block;
 width :100%;
@@ -102,16 +110,16 @@ border-radius :8px;
 border :1px solid ;
 /*transition :0.3s;*/
 font-size :16px;
-border-color:#ff1645;;
+border-color:#ff1645;
 }
-label{
+l/*abel{
 color:#353030;;
 font-family:"Helvetica Neue", "Helvetica", "Arial", "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif !important;;
 box-sizing:border-box;;
 -webkit-tap-highlight-color:rgba(0, 0, 0, 0);;
 position:relative;;
-display:block;;
-}
+display:block;
+}*/
 .button{
   width: 100%;
   margin-top: 48px;

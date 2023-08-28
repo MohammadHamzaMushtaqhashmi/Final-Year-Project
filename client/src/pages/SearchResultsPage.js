@@ -51,7 +51,7 @@ function SearchResultsPage({ addToWatchlist }) {
           <SearchResults searchResults={searchResults} addToWatchlist={addToWatchlist} />
         </>
       )}
-      <Footer />
+      <Footer className="footer" />
     </>
   );
 }

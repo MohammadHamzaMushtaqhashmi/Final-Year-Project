@@ -1,0 +1,141 @@
+/* Setting the display and alignment of the movie container */
+.MovieContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 1cm;
+  overflow: hidden;
+}
+
+/* Setting the height and width of the hero section */
+.HeroSection {
+  height: auto;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-left: 0.5cm;
+  padding-right: 0.5cm;
+}
+
+img{
+  height: 70vh;
+  width: 50%;
+}
+/* Setting the position and alignment of the hero content */
+.HeroContent {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+}
+
+/* Setting the color and font size of the heading */
+.Heading {
+  color: white;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  text-shadow: 2px 2px black;
+}
+
+/* Setting the color and font size of the subheading */
+.Subheading {
+  color: white;
+  font-size: 0.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  text-shadow: 2px 2px black;
+}
+
+/* Setting the color and font size of the release date */
+.ReleaseDate {
+   color: white;
+   font-size: 1.5rem;
+   margin-bottom: .5rem;
+   text-align: center;
+   text-shadow: 2px 2px black;
+}
+
+/* Setting the style and appearance of the add to watchlist button */
+.AddButton {
+    padding: .5rem .75rem;
+    border-radius: .25rem;
+    border: none;
+    background-color:#ff6347; /* Tomato color */
+    color:white; 
+    font-size:.75rem; 
+    font-weight:bold; 
+    cursor:pointer;
+
+    /* Adding a hover effect to the button */
+    &:hover {
+      transform: scale(1.1);
+      transition: all ease-in-out .3s; 
+      box-shadow:
+       inset -3px -3px #f6f7f8,
+       inset -2px -2px #eaebee,
+       inset -3px -3px #f6f7f8,
+       inset -4px -4px #eaebee,
+       -.5px -.5px #f6f7f8,
+       -1px -1px #eaebee,
+       .5px .5px #f6f7f8,
+       -1px -1px #eaebee; 
+    }
+}
+
+/* Setting the style and appearance of the play trailer button */
+.PlayButton {
+  /* Set the background-color to blue for action */
+  background-color: blue;
+  /* Set the color to white for contrast */
+  color: white;
+
+  /* Use the same properties as the add button for consistency */
+  padding: .5rem .75rem;
+  border-radius: .25rem;
+  border: none; 
+  font-size:.75rem; 
+  font-weight:bold; 
+  cursor:pointer;
+
+  /* Use the same hover effect as the add button for consistency */
+  &:hover {
+     /* Scale up the button by 10% */
+     transform: scale(1.1);
+     /* Add a smooth transition for all properties */
+     transition: all ease-in-out .3s; 
+     /* Add a box-shadow with different colors and offsets */
+     box-shadow:
+      inset -3px -3px #f6f7f8,
+      inset -2px -2px #eaebee,
+      inset -3px -3px #f6f7f8,
+      inset -4px -4px #eaebee,
+      -.5px -.5px #f6f7f8,
+      -1px -1px #eaebee,
+      .5px .5px #f6f7f8,
+      -1px -1px #eaebee; 
+   }
+}
+/* Styles for smaller screens */
+@media only screen and (max-width: 767px) {
+  /* Change the flex-direction of the movie container to column */
+  .MovieContainer {
+    flex-direction: column;
+  }
+
+  /* Adjust the height and width of the image element */
+  img {
+    height: 50vh;
+    width: 100%;
+  }
+
+  /* Adjust the height and width of the hero content element */
+  .HeroContent {
+    height: auto;
+    width: 100%;
+  }
+}

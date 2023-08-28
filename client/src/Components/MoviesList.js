@@ -1,28 +1,21 @@
+
 // Importing necessary modules and components
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import Modal from 'react-modal'; // Import the Modal component from the react-modal library
+import Modal from 'react-modal'; 
 import '../CSS/movieslist.css';
-
-// Defining constants for the API key and base URL
 const apiKey = '499d99db6ce23991d21afde0deede0f1';
 const baseUrl = 'https://api.themoviedb.org/3';
 
-// Defining the MoviesList component
 function MoviesList({ category, addToWatchlist }) {
-  // Setting up state for the list of movies, selected movie, and trailer video
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [trailerVideo, setTrailerVideo] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
-  // Defining a function to play the trailer for a movie
   const playTrailer = async (movie) => {
     setIsLoading(true);
     setSelectedMovie(movie);
-
-    // Fetching the videos for the selected movie from the TMDb API
     const response = await axios.get(
       `${baseUrl}/movie/${movie.id}/videos`,
       {
@@ -31,24 +24,16 @@ function MoviesList({ category, addToWatchlist }) {
         },
       }
     );
-
-    // Finding the first video with type "Trailer"
     const trailer = response.data.results.find(
       (video) => video.type === 'Trailer' && video.site === 'YouTube'
     );
-
-    // Setting the trailer video state
     setTrailerVideo(trailer);
     setIsLoading(false);
   };
-
-  // Defining a function to close the trailer modal
   const closeTrailer = () => {
     setSelectedMovie(null);
     setTrailerVideo(null);
   };
-
-  // Using an effect hook to fetch data from the API when the component mounts or the category changes
   useEffect(() => {
     const fetchData = async () => {
       let endpoint;
@@ -65,7 +50,6 @@ function MoviesList({ category, addToWatchlist }) {
         default:
           return;
       }
-
       const response = await axios.get(`${baseUrl}${endpoint}`, {
         params: {
           api_key: apiKey,
@@ -75,8 +59,6 @@ function MoviesList({ category, addToWatchlist }) {
     };
     fetchData();
   }, [category]);
-
-  // Defining a function to handle clicks on the scroll buttons
   const handleScrollClick = (direction) => {
     const container = document.querySelector(`.movies-container-${category}`);
     if (direction === 'left') {
@@ -85,8 +67,6 @@ function MoviesList({ category, addToWatchlist }) {
       container.scrollBy({ left: 300, behavior: 'smooth' });
     }
   };
-
-  // Rendering the list of movies with scroll buttons and a modal to display the trailer
   return (
     <div>
       <h2>{category}</h2>
@@ -120,7 +100,6 @@ function MoviesList({ category, addToWatchlist }) {
           {'>'}
         </button>
       </div>
-      {/* Rendering a modal to display the trailer video */}
       {trailerVideo && (
         <>
           <Modal
@@ -201,6 +180,4 @@ function MoviesList({ category, addToWatchlist }) {
     </div>
   );
 }
-
-// Exporting the MoviesList component as the default export
 export default MoviesList;

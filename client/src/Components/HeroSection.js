@@ -1,102 +1,108 @@
 // Importing necessary modules and components
 import React, { useState, useEffect } from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
+import axios from 'axios';
+import Modal from 'react-modal'; // Import the Modal component from the react-modal library
+import Slider from 'react-slick'; // Import the Slider component from the react-slick library
+import 'slick-carousel/slick/slick.css'; // Import the slick-carousel CSS files
 import 'slick-carousel/slick/slick-theme.css';
-import '../CSS/hero.css';
+
+// Importing the hero.module.css file as a JavaScript object
+import styles from '../CSS/hero.module.css';
+
+// Defining constants for the API key and base URL
+const apiKey = '499d99db6ce23991d21afde0deede0f1';
+const baseUrl = 'https://api.themoviedb.org/3';
 
 // Defining the HeroSection component
-function HeroSection() {
-  // Setting up state for the movie data
+function HeroSection({ addToWatchlist }) {
+  // Setting up state for the list of movies, selected movie, and trailer video
   const [movies, setMovies] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [trailerVideo, setTrailerVideo] = useState(null);
 
-  // Defining a function to fetch movie data from the TMDB API
-  const fetchMovies = async () => {
-    const response = await fetch(
-      'https://api.themoviedb.org/3/movie/popular?api_key=499d99db6ce23991d21afde0deede0f1'
-    );    
-    const data = await response.json();
-    setMovies(data.results);
+  // Defining a function to fetch popular movies from the TMDB API
+  const fetchPopularMovies = async () => {
+    // Fetching the popular movies from the TMDB API
+    const response = await axios.get(`${baseUrl}/movie/popular`, {
+      params: {
+        api_key: apiKey,
+      },
+    });
+
+    // Setting the state with the list of popular movies
+    setMovies(response.data.results);
   };
 
-  // Fetching movie data when the component mounts
+  // Defining a function to play the trailer for a movie
+  const playTrailer = async (movie) => {
+    setSelectedMovie(movie);
+
+    // Fetching the videos for the selected movie from the TMDb API
+    const response = await axios.get(
+      `${baseUrl}/movie/${movie.id}/videos`,
+      {
+        params: {
+          api_key: apiKey,
+        },
+      }
+    );
+
+    // Finding the first video with type "Trailer"
+    const trailer = response.data.results.find(
+      (video) => video.type === 'Trailer' && video.site === 'YouTube'
+    );
+
+    // Setting the trailer video state
+    setTrailerVideo(trailer);
+  };
+
+  // Defining a function to close the trailer modal
+  const closeTrailer = () => {
+    setSelectedMovie(null);
+    setTrailerVideo(null);
+  };
+
+  // Using an effect hook to fetch popular movies when the component mounts
   useEffect(() => {
-    fetchMovies();
+    fetchPopularMovies();
   }, []);
 
-  // Defining settings for the Slider component
-const settings = {
-  dots: true,
-  infinite: true,
-  speed: 800,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  autoplay: true,
-  autoplaySpeed: 2000,
-};
-// Rendering the hero section with a carousel of movie posters
-return (
-  <section className="hero-section">
-  
-    {movies && (
-      <Slider {...settings}>
+  // Rendering the hero section with a carousel that displays multiple movies and buttons for adding to watchlist and playing trailer
+  return (
+   <div>
+     <div className={styles.HeroSection}>
+      <Slider>
         {movies.map((movie) => (
-          movie.poster_path && (
-            <div className='img' key={movie.id}>
-              <img className='img1
-              '
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                alt={movie.title}
-              />
+          <div key={movie.id}>
+            <div className={styles.MovieContainer}>
+              <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} alt={movie.title} />
+              <div className={styles.HeroContent}>
+                <h1 className={styles.Heading}>{movie.title}</h1>
+                <h2 className={styles.Subheading}>{movie.overview}</h2>
+                <h3 className={styles.ReleaseDate}>Release date: {movie.release_date}</h3>
+                <button className={styles.AddButton} onClick={() => addToWatchlist(movie)}>Add to Watchlist</button>
+                <button className={styles.PlayButton} onClick={() => playTrailer(movie)}>Play Trailer</button>
+              </div>
             </div>
-          )
+          </div>
         ))}
       </Slider>
-    )}
-  </section>
-);
-
-
-}
-
-// Exporting the HeroSection component as the default export
-export default HeroSection;
-
-/*
-// Importing necessary modules
-import React from 'react';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import '../CSS/hero.css';
-
-// Defining the HeroSection component
-function HeroSection() {
-  // Rendering the hero section
-  return (
-    <section>
-      <div className="heropage">
-        <div className="inside-heropage">
-          <span>NOW STREAMING</span>
-          <div className="line1"></div>
-          <h1>Movie Lovers</h1>
-          <p>Action,Drama,Comedy,Horror,Romantic</p>
-          <div className="btn1">
-            <a href>
-              <i className="fas fa-play" />Watch Now
-            </a>
-            <a href>
-              <i className="fas fa-heart" />Watch Later
-            </a>
-          </div>
-        </div>
-      </div>
-      <div className="poster">
-        <img src="./images/cover.jpg" alt="cover" />
-      </div>
-    </section>
+    </div>
+     <Modal isOpen={trailerVideo !== null} onRequestClose={closeTrailer}>
+       {trailerVideo && (
+         <iframe
+           width="560"
+           height="315"
+           src={`https://www.youtube.com/embed/${trailerVideo.key}`}
+           title="YouTube video player"
+           frameBorder="0"
+           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+           allowFullScreen
+         ></iframe>
+       )}
+     </Modal>
+   </div>
   );
 }
 
-// Exporting the HeroSection component as the default export
 export default HeroSection;
-*/

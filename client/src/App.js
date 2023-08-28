@@ -56,6 +56,7 @@ return (
             watchlist={watchlist}
             addToWatchlist={addToWatchlist}
             loggedInUser={loggedInUser}
+            
           />
         }
       />

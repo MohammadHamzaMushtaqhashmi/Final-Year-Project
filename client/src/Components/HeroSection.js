@@ -7,7 +7,7 @@ import 'slick-carousel/slick/slick.css'; // Import the slick-carousel CSS files
 import 'slick-carousel/slick/slick-theme.css';
 
 // Importing the hero.module.css file as a JavaScript object
-import styles from '../CSS/hero.module.css';
+import hero from '../CSS/hero.module.css';
 
 // Defining constants for the API key and base URL
 const apiKey = '499d99db6ce23991d21afde0deede0f1';
@@ -67,7 +67,44 @@ function HeroSection({ addToWatchlist }) {
     fetchPopularMovies();
   }, []);
 
-  // Rendering the hero section with a carousel that displays multiple movies and buttons for adding to watchlist and playing trailer
+return (
+   <div>
+     <div className={hero.HeroSection}>
+      <Slider>
+        {movies.map((movie) => (
+          <div key={movie.id}>
+            <div className={hero.MovieContainer}>
+              <img className={hero['hero-img']} src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} alt={movie.title} />
+              <div className={hero.HeroContent}>
+                <h1 className={hero.Heading}>{movie.title}</h1>
+                <h2 className={hero.Subheading}>{movie.overview}</h2>
+                <h3 className={hero.ReleaseDate}>Release date: {movie.release_date}</h3>
+                <button className={hero.AddButton} onClick={() => addToWatchlist(movie)}>Add to Watchlist</button>
+                <button className={hero.PlayButton} onClick={() => playTrailer(movie)}>Play Trailer</button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </Slider>
+    </div>
+     <Modal isOpen={trailerVideo !== null} onRequestClose={closeTrailer}>
+       {trailerVideo && (
+         <iframe
+           width="560"
+           height="315"
+           src={`https://www.youtube.com/embed/${trailerVideo.key}`}
+           title="YouTube video player"
+           frameBorder="0"
+           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+           allowFullScreen
+         ></iframe>
+       )}
+     </Modal>
+   </div>
+  );
+}
+
+  /*
   return (
    <div>
      <div className={styles.HeroSection}>
@@ -75,7 +112,7 @@ function HeroSection({ addToWatchlist }) {
         {movies.map((movie) => (
           <div key={movie.id}>
             <div className={styles.MovieContainer}>
-              <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} alt={movie.title} />
+              <img className='hero-img' src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} alt={movie.title} />
               <div className={styles.HeroContent}>
                 <h1 className={styles.Heading}>{movie.title}</h1>
                 <h2 className={styles.Subheading}>{movie.overview}</h2>
@@ -104,5 +141,5 @@ function HeroSection({ addToWatchlist }) {
    </div>
   );
 }
-
+*/
 export default HeroSection;

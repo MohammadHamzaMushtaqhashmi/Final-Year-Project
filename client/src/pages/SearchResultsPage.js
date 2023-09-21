@@ -3,10 +3,10 @@ import React, { useState } from 'react';
 import Header from '../Components/Header';
 import SearchResults from '../Components/SearchResults';
 import Footer from '../Components/Footer';
-import '../CSS/searchpage.css'
+import searchPageStyles from '../CSS/searchPage.module.css';
 
 // Defining the SearchResultsPage component
-function SearchResultsPage({ addToWatchlist }) {
+function SearchResultsPage({ loggedInUser,addToWatchlist,fetchUserData }) {
   // Setting up state for the search query and results
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -33,28 +33,28 @@ function SearchResultsPage({ addToWatchlist }) {
     setSearchResults(data.results);
   };
 
-  // Rendering the search input and search results
-  return (
-    <>
-      <Header />
-      <input
-        className="search-input"
-        type="text"
-        onChange={handleSearchInputChange}
-        onKeyPress={handleSearchInputKeyPress}
-        value={searchQuery}
-      />
+// Rendering the search input and search results
+return (
+  <>
+    <Header loggedInUser={loggedInUser} fetchUserData={fetchUserData} />
+    <input
+      className={searchPageStyles['search-input']}
+      type="text"
+      onChange={handleSearchInputChange}
+      onKeyPress={handleSearchInputKeyPress}
+      value={searchQuery}
+    />
 
-      {searchResults.length > 0 && (
-        <>
-          <h2>Search Results</h2>
-          <SearchResults searchResults={searchResults} addToWatchlist={addToWatchlist} />
-        </>
-      )}
-      <Footer className="footer" />
-    </>
-  );
+    {searchResults.length > 0 && (
+      <>
+        <h2>Search Results</h2>
+        <SearchResults searchResults={searchResults} addToWatchlist={addToWatchlist} customContainerClass={searchPageStyles['search-results-container']} />
+      </>
+    )}
+    <Footer className={searchPageStyles['footer']} />
+  </>
+);
 }
-
 // Exporting the SearchResultsPage component as the default export
 export default SearchResultsPage;
+

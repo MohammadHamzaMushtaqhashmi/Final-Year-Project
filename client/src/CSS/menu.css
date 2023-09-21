@@ -1,100 +1,88 @@
-/* Styling the container for the menu */
-.menu-container {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 40%;
-  max-width: 500px;
-  height: 100%;
-  background-color: rgb(145, 143, 143);
+/* Importing a custom font from Google Fonts */
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+
+/* Styling the body element */
+body {
+  font-family: 'Roboto', sans-serif; /* Using the custom font */
+  background-color: #f0f0f0; /* Using a light gray background color */
 }
 
-/* Styling the close button for the menu */
-.menu-close-button {
-  position: absolute;
-  top: 10px;
-  left: 10px;
+/* Styling the button element */
+button {
+  padding: 10px 20px; /* Adding some padding inside the button */
+  border: none; /* Removing the default border */
+  border-radius: 5px; /* Adding some rounded corners */
+  background-color: #ff6347; /* Using a tomato color */
+  color: white; /* Using a white color for the text */
+  font-weight: bold; /* Making the text bold */
+  cursor: pointer; /* Changing the cursor to a pointer when hovering */
 }
 
-/* Styling the container for the menu contents */
+/* Styling the button element when hovering */
+button:hover {
+  background-color: #ff7b5c; /* Using a lighter shade of tomato color */
+}
+
+/* Styling the button element when clicking */
+button:active {
+  background-color: #e5533d; /* Using a darker shade of tomato color */
+}
+
+/* Styling the modal element */
+.modal {
+  position: fixed; /* Making the modal fixed on the screen */
+  top: 0; /* Aligning the modal to the top of the screen */
+  left: 0; /* Aligning the modal to the left of the screen */
+  right: 0; /* Aligning the modal to the right of the screen */
+  bottom: 0; /* Aligning the modal to the bottom of the screen */
+  display: flex; /* Using flexbox to align the modal content */
+  justify-content: center; /* Centering the modal content horizontally */
+  align-items: center; /* Centering the modal content vertically */
+  background-color: rgba(0,0,0,0.5); /* Using a semi-transparent black background color */
+}
+
+/* Styling the modal content element */
+.modal-main {
+  position: relative; /* Making the modal content relative to its parent */
+  width: 80%; /* Setting a width for the modal content */
+  max-width: 800px; /* Setting a maximum width for responsiveness */
+  height: auto; /* Setting an auto height for flexibility */
+  padding: 20px; /* Adding some padding inside the modal content */
+  border-radius: 10px; /* Adding some rounded corners */
+  background-color: white; /* Using a white background color */
+}
+
+/* Styling the close button element within the modal content element */
+.modal-main > button {
+  position: absolute; /* Making the close button absolute to its parent */
+  top: -10px; /* Moving the close button above its parent */
+  right: -10px; /* Moving the close button to the right of its parent */
+}
+
+/* Styling the container element within the modal content element */
 .container {
-    display:block;
-    justify-content:space-between;
-    padding-top:20px; 
+  display: flex; /* Using flexbox to align the container items */
 }
 
-/* Styling the heading within the container */
-.container h2 {
-    font-size:20px; 
-    margin-bottom:10px; 
-    color: teal;
+/* Styling each column element within the container element */
+.column {
+  flex-basis: 20%; /* Setting a base width for each column item */
 }
 
-/* Styling the paragraph within the container */
-.container p {
-    font-size:16px; 
-    margin-bottom:5px; 
+/* Styling each heading element within each column element */
+.column > h2 {
+  margin-top: 0; /* Removing the default top margin of headings */ 
 }
 
-/* Styling the links within the container */
-.container a {
-    text-decoration:none; 
-    color:black; 
+/* Styling each link element within each column element */ 
+.column > a {
+   display:block;
+   margin-bottom :10px;
+   text-decoration :none;
+   color :#353030;
+   font-size :16px;
+   transition :color .3s;
 }
-
-.column{
-  display: block;
-  padding-right: 2px;
-  margin: 5px;
-}
-
-/* Add styles for the modal content */
-.modal-content {
-  top: '50%';
-  left: '50%';
-  right: 'auto';
-  bottom: 'auto';
-  margin-right: '-50%';
-  transform: 'translate(-50%, -50%)';
-  width: '80%';
-  height: '80%';
-  opacity: 0;
-  transition: opacity 0.25s ease-in-out;
-}
-
-/* Add styles for the modal content when it is opened */
-.modal-content.open {
-  opacity: 1;
-}
-/* Add styles for the modal content */
-.modal-content {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-/* Add styles for the modal content when it is opened */
-.modal-content.open {
-  opacity: 1;
-}
-
-/* Add styles for the close button */
-.modal-close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 24px;
-  background-color: transparent;
-  border: 'none';
-  color: '#fff';
-}
-
-/* Add styles for the iframe element */
-.modal-iframe {
-  position: 'absolute';
-  top: 0;
-  left: 0;
-  width: '100%';
-  height: '100%';
-  overflow: 'hidden';
+.column > a:hover{
+color :#ff6347;
 }

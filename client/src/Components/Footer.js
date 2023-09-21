@@ -3,24 +3,24 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookSquare, faYoutube, faInstagram, faPinterest } from '@fortawesome/free-brands-svg-icons';
 
-import '../CSS/footer.css';
+import footerStyles from '../CSS/footer.module.css';
 
 // Defining the Footer component
 function Footer() {
-  // Rendering the footer
-  return (
-    <div className="footer">
-      <div className="inside-footer">
-        <div className="footer-container">
-          <div className="logopart">
+
+return (
+    <div className={footerStyles.footer}>
+      <div className={footerStyles['inside-footer']}>
+        <div className={footerStyles['footer-container']}>
+          <div className={footerStyles.logopart}>
             <h1>MovieMate</h1>
           </div>
-          <div className="copyright">
+          <div className={footerStyles.copyright}>
             <p>
               copyright © <span>Shmmi </span>,All Rights Reserved-2021.
             </p>
           </div>
-          <div className="socials">
+          <div className={footerStyles.socials}>
             <a href="https://www.facebook.com/MovieMate" target="_blank" rel="noopener noreferrer" aria-label="Movie Mate on Facebook">
               <FontAwesomeIcon icon={faFacebookSquare} />
             </a>
@@ -34,7 +34,7 @@ function Footer() {
               <FontAwesomeIcon icon={faPinterest} />
             </a>
           </div>
-          <div className="btn4">
+          <div className={footerStyles.btn4}>
             <a href>Subscribe Now</a>
           </div>
         </div>
@@ -43,5 +43,4 @@ function Footer() {
   );
 }
 
-// Exporting the Footer component as the default export
 export default Footer;

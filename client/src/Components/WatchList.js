@@ -1,6 +1,7 @@
 // Importing necessary modules
 import React from 'react';
-import '../CSS/movieslist.css';
+import moviesListStyles from '../CSS/movieslist.module.css';
+
 
 // Defining the Watchlist component
 function Watchlist({ watchlist, removeFromWatchlist }) {
@@ -8,15 +9,15 @@ function Watchlist({ watchlist, removeFromWatchlist }) {
   return (
     <div>
       <h2>Watchlist</h2>
-      <div className="movies-list">
-        <div className="movies-container">
-          {watchlist.map((movie) => (
-            <div key={movie.id} className="movie-card">
-              <img
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                alt={movie.title}
-                style={{ height: '300px' }}
-              />
+      <div className={moviesListStyles['movies-list']}>
+      <div className={moviesListStyles['movies-container']}>
+        {watchlist.map((movie) => (
+          <div key={movie.id} className={moviesListStyles['movie-card']}>
+            <img
+              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+              alt={movie.title}
+              style={{ height: '300px' }}
+            />
               <h3 style={{ height: '40px', zIndex: 1 }}>{movie.title}</h3>
               <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <button onClick={() => removeFromWatchlist(movie)}>

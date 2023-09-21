@@ -5,14 +5,13 @@ import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
-import '../CSS/moviepage.css';
-import '../CSS/movieslist.css';
+import moviePageStyles from '../CSS/moviepage.module.css';
 
 // Defining constants for the API key and base URL
 const apiKey = '499d99db6ce23991d21afde0deede0f1';
 const baseUrl = 'https://api.themoviedb.org/3';
 
-function MoviePage({ loggedInUser }) {
+function MoviePage({ loggedInUser,fetchUserData }) {
   // Using the useParams hook to get the ID of the selected movie from the URL parameter
   const { id } = useParams();
   const navigate = useNavigate();
@@ -180,12 +179,11 @@ function MoviePage({ loggedInUser }) {
   // Rendering the Header, movie details, cast, reviews, review form, and Footer
   return (
     <>
-      <Header loggedInUser={loggedInUser} />
-      <div className="movie-page">
-        {/* Rendering movie details */}
-        <div className="trailer-and-details">
+      <Header loggedInUser={loggedInUser} fetchUserData={fetchUserData} />
+      <div className={moviePageStyles['movie-page']}>
+        <div className={moviePageStyles['trailer-and-details']}>
           {trailerVideoKey && (
-            <div className="trailer-container">
+            <div className={moviePageStyles['trailer-container']}>
               <iframe
                 width="100%"
                 height="100%"
@@ -197,20 +195,21 @@ function MoviePage({ loggedInUser }) {
               ></iframe>
             </div>
           )}
-          <div className="movie-details">
-            {movieDetails && (
-              <>
-                <h1>{movieDetails.title}</h1>
-                <p>{movieDetails.overview}</p>
-              </>
-            )}
-          </div>
+        <div className={moviePageStyles['movie-details']}>
+          {movieDetails && (
+            <>
+              <h1>{movieDetails.title}</h1>
+              <p>{movieDetails.overview}</p>
+            </>
+          )}
         </div>
-        <h2>Cast</h2>
-        <div className="cast-list">
+      </div>
+      <h2>Cast</h2>
+        <div className={moviePageStyles['cast-list']}>
           {(showAllCast ? cast : cast.slice(0, 5)).map((actor) => (
             <div key={actor.id}>
               <img
+              className={moviePageStyles['cast-img']}
                 src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`}
                 alt={actor.name}
               />
@@ -223,156 +222,129 @@ function MoviePage({ loggedInUser }) {
             </button>
           )}
         </div>
-        {/* Rendering similar movies */}
         <h2>Similar Movies</h2>
-        <div className="movies-list">
-          <button className="scroll-button" onClick={() => handleScrollClick('left')}>
+        <div className={moviePageStyles['movies-list']}>
+          <button className={moviePageStyles['scroll-button']} onClick={() => handleScrollClick('left')}>
             {'<'}
           </button>
-          <div className="movies-container">
+          <div className={moviePageStyles['movies-container']}>
             {similarMovies.map((movie) => (
-              <div key={movie.id} className="movie-card">
-                <Link to={`/movie/${movie.id}`}>
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                    alt={movie.title}
-                  />
-                  <h3>{movie.title}</h3>
-                </Link>
-                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                  <button onClick={() => addToWatchlist(movie)}>
-                    Watchlist <span>+</span>
-                  </button>
-                  <button onClick={() => playTrailer(movie)}>
-                    <span>▶</span> Play
-                  </button>
-                </div>
-              </div>
-            ))}
+          <div key={movie.id} className={moviePageStyles['movie-card']}>
+            <Link to={`/movie/${movie.id}`}>
+              <img
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                alt={movie.title}
+              />
+              <h3>{movie.title}</h3>
+            </Link>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <button onClick={() => addToWatchlist(movie)}>
+                Watchlist <span>+</span>
+              </button>
+              <button onClick={() => playTrailer(movie)}>
+                <span>▶</span> Play
+              </button>
+            </div>
           </div>
-          <button className="scroll-button" onClick={() => handleScrollClick('right')}>
+          ))}
+          </div>
+          <button className={moviePageStyles['scroll-button']} onClick={() => handleScrollClick('right')}>
             {'>'}
           </button>
         </div>
+
         
         {/* Rendering recommended movies */}
         <h2>Recommended Movies</h2>
-        <div className="movies-list">
-          <button className="scroll-button" onClick={() => handleScrollClick('left')}>
+        <div className={moviePageStyles['movies-list']}>
+          <button className={moviePageStyles['scroll-button']} onClick={() => handleScrollClick('left')}>
             {'<'}
           </button>
-          <div className="movies-container">
+          <div className={moviePageStyles['movies-container']}>
             {recommendedMovies.map((movie) => (
-              <div key={movie.id} className="movie-card">
-                <Link to={`/movie/${movie.id}`}>
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                    alt={movie.title}
-                  />
-                  <h3>{movie.title}</h3>
-                </Link>
-                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                  <button onClick={() => addToWatchlist(movie)}>
-                    Watchlist <span>+</span>
-                  </button>
-                  <button onClick={() => playTrailer(movie)}>
-                    <span>▶</span> Play
-                  </button>
-                </div>
-              </div>
+            <div key={movie.id} className={moviePageStyles['movie-card']}>
+              <Link to={`/movie/${movie.id}`}>
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  alt={movie.title}
+                />
+                <h3>{movie.title}</h3>
+              </Link>
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <button onClick={() => addToWatchlist(movie)}>
+                Watchlist <span>+</span>
+              </button>
+              <button onClick={() => playTrailer(movie)}>
+                <span>▶</span> Play
+              </button>
+            </div>
+          </div>
             ))}
           </div>
-          <button className="scroll-button" onClick={() => handleScrollClick('right')}>
-            {'>'}
-          </button>
+            <button className={moviePageStyles['scroll-button']} onClick={() => handleScrollClick('right')}>
+              {'>'}
+            </button>
         </div>
-        
         {/* Rendering popular movies */}
         <h2>Popular Movies</h2>
-        <div className="movies-list">
-          <button className="scroll-button" onClick={() => handleScrollClick('left')}>
-            {'<'}
+<div className={moviePageStyles['movies-list']}>
+  <button className={moviePageStyles['scroll-button']} onClick={() => handleScrollClick('left')}>
+    {'<'}
+  </button>
+  <div className={moviePageStyles['movies-container']}>
+    {popularMovies.map((movie) => (
+      <div key={movie.id} className={moviePageStyles['movie-card']}>
+        <Link to={`/movie/${movie.id}`}>
+          <img
+            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+            alt={movie.title}
+          />
+          <h3>{movie.title}</h3>
+        </Link>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <button onClick={() => addToWatchlist(movie)}>
+            Watchlist<span>+</span>
           </button>
-          <div className="movies-container">
-            {popularMovies.map((movie) => (
-              <div key={movie.id} className="movie-card">
-                <Link to={`/movie/${movie.id}`}>
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                    alt={movie.title}
-                  />
-                  <h3>{movie.title}</h3>
-                </Link>
-                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                  <button onClick={() => addToWatchlist(movie)}>
-                    Watchlist <span>+</span>
-                  </button>
-                  <button onClick={() => playTrailer(movie)}>
-                    <span>▶</span> Play
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-          <button className="scroll-button" onClick={() => handleScrollClick('right')}>
-            {'>'}
+          <button onClick={() => playTrailer(movie)}>
+            Play<span>▶</span> 
           </button>
         </div>
+      </div>
+    ))}
+  </div>
+  <button className={moviePageStyles['scroll-button']} onClick={() => handleScrollClick('right')}>
+    {'>'}
+  </button>
+</div>
 
         {/* Rendering top-rated movies */}
         <h2>Top-Rated Movies</h2>
-        <div className="movies-list">
-          <button className="scroll-button" onClick={() => handleScrollClick('left')}>
+        <div className={moviePageStyles['movies-list']}>
+          <button className={moviePageStyles['scroll-button']} onClick={() => handleScrollClick('left')}>
             {'<'}
-          </button>
-          <div className="movies-container">
-            {topRatedMovies.map((movie) => (
-              <div key={movie.id} className="movie-card">
+            </button>
+            <div className={moviePageStyles['movies-container']}>
+              {topRatedMovies.map((movie) => (
+              <div key={movie.id} className={moviePageStyles['movie-card']}>
                 <Link to={`/movie/${movie.id}`}>
                   <img
-                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                    alt={movie.title}
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  alt={movie.title}
                   />
                   <h3>{movie.title}</h3>
-                </Link>
-                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                  <button onClick={() => addToWatchlist(movie)}>
-                    Watchlist<span>+</span>
-                  </button>
-                  <button onClick={() => playTrailer(movie)}>
-                    Play<span>▶</span> 
-                  </button>
-                </div>
-
-              </div>
-
+                  </Link>
+                  <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <button onClick={() => addToWatchlist(movie)}>
+                      Watchlist<span>+</span>
+                      </button>
+                      <button onClick={() => playTrailer(movie)}>
+                        Play<span>▶</span> 
+                        </button>
+                        </div>
+                        </div>
             ))}
           </div>
-
-        <h2>Reviews</h2>
-        {reviews.map((review) => (
-          <Review key={review.id} review={review} />
-        ))}
-        <h3>Write a review</h3>
-        <form onSubmit={submitReview}>
-          <label htmlFor="review-text">Your review:</label><br/>
-          <textarea id="review-text" value={reviewText} onChange={(e) => setReviewText(e.target.value)} /><br/>
-          <label htmlFor="rating">Your rating:</label><br/>
-          <div>
-            {[1, 2, 3, 4, 5].map((star) => (
-              <button
-                key={star}
-                onClick={() => setRating(star)}
-                style={{ color: star <= rating ? 'gold' : 'gray' }}
-              >
-                ★
-              </button>
-            ))}
-          </div>
-          <br/>
-          <button type="submit">Submit</button>
-        </form>
-      </div>
+        </div>
       {/* Rendering a modal to display the trailer video */}
       {trailerVideo && (
         <>

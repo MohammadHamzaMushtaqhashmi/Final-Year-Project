@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 import axios from 'axios';
-import '../CSS/movieslist.css';
+import moviesListStyles from '../CSS/movieslist.module.css';
 
 const apiKey = '499d99db6ce23991d21afde0deede0f1';
 const baseUrl = 'https://api.themoviedb.org/3';
@@ -47,21 +47,21 @@ function SearchResults({ searchResults, addToWatchlist }) {
 
   return (
     <div>
-      <div className="movies-list">
-        <button className="scroll-button" onClick={() => handleScrollClick('left')}>
-          {'<'}
-        </button>
-        <div className="movies-container">
-          {searchResults.map((result) => (
-            <div key={result.id} className="movie-card">
-              <Link to={`/movie/${result.id}`}>
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${result.poster_path}`}
-                  alt={result.title}
-                  style={{ height: '300px' }}
-                />
-                <h3 style={{ height: '40px', zIndex: 1 }}>{result.title}</h3>
-              </Link>
+      <div className={moviesListStyles['movies-list']}>
+      <button className={moviesListStyles['scroll-button']} onClick={() => handleScrollClick('left')}>
+        {'<'}
+      </button>
+      <div className={moviesListStyles['movies-container']}>
+        {searchResults.map((result) => (
+          <div key={result.id} className={moviesListStyles['movie-card']}>
+            <Link to={`/movie/${result.id}`}>
+              <img
+                src={`https://image.tmdb.org/t/p/w500${result.poster_path}`}
+                alt={result.title}
+                style={{ height: '300px' }}
+              />
+              <h3 style={{ height: '40px', zIndex: 1 }}>{result.title}</h3>
+            </Link>
               <div style={{ display: 'flex', flexDirection: 'column' }}>
                 <button onClick={() => addToWatchlist(result)}>
                   Watchlist <span>+</span>

@@ -5,11 +5,11 @@ import WatchList from '../Components/WatchList';
 import Footer from '../Components/Footer';
 
 // Defining the WatchlistPage component
-function WatchlistPage({ watchlist, removeFromWatchlist }) {
+function WatchlistPage({ loggedInUser,watchlist, removeFromWatchlist , fetchUserData}) {
   // Rendering the user's watchlist or a message if it's empty
   return (
     <>
-      <Header />
+      <Header loggedInUser={loggedInUser} fetchUserData={fetchUserData} />
       <div
         style={{
           minHeight: 'calc(120vh - 200px)',

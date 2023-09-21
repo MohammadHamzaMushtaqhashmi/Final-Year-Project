@@ -1,7 +1,8 @@
+
 // Importing necessary modules and components
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../CSS/login.css';
+import loginStyles from '../CSS/login.module.css';
 
 // Defining the Signup component
 function Signup() {
@@ -78,54 +79,46 @@ function Signup() {
     });
   };
 
-  // Rendering the signup form with error/success messages and a "Sign up with Facebook" button
-  return (
-    <div className='signtop'>
-      <div className="logo">
-    <img src="../images/MovieMate-icon.png" alt="logo" />
-    <h3>MovieMate</h3>
-  </div>
-      <div className="login-container">
-        <div className="login-form">
-          <h1>Sign Up to MovieMate</h1>
-          {errorMessage && <p>{errorMessage}</p>}
-          {successMessage && <p>{successMessage}</p>}
-          <form onSubmit={handleSubmit}>
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
-            />
-            <br />
-            <label htmlFor="password">Password:</label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-            />
-            <br />
-            <label htmlFor="username">Username:</label>
-            <input
-              type="text"
-              id="username"
-              value={username}
-              onChange={(event) => setUsername(event.target.value)}
-            />
-            <br />
-            <button type="submit">Sign Up</button>
-          </form>
-
-          {/* Rendering a "Sign up with Facebook" button */}
-          <button onClick={handleFacebookSignupClick}>Sign up with Facebook</button>
-        </div>
+// Rendering the signup form with error/success messages and a "Sign up with Facebook" button
+return (
+  <div className={loginStyles['login-container']}>
+      <div className={loginStyles['login-form']}>
+        <h1>Sign Up to MovieMate</h1>
+        {errorMessage && <p>{errorMessage}</p>}
+        {successMessage && <p>{successMessage}</p>}
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="email">Email:</label>
+          <input
+          className={loginStyles['form-input']}
+            type="email"
+            id="email"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+          />
+          <br />
+          <label htmlFor="password">Password:</label>
+          <input
+          className={loginStyles['form-input']}
+            type="password"
+            id="password"
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+          />
+          <br />
+          <label htmlFor="username">Username:</label>
+          <input
+          className={loginStyles['form-input']}
+            type="text"
+            id="username"
+            value={username}
+            onChange={(event) => setUsername(event.target.value)}
+          />
+          <br />
+          <button className={loginStyles['form-button']} type="submit">Sign Up</button>
+        </form>
+        <button className={loginStyles['form-button']} onClick={handleFacebookSignupClick}>Sign up with Facebook</button>
       </div>
     </div>
-  );
+);
 }
-
-// Exporting the Signup component as the default export
 export default Signup;
-

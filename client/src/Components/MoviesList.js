@@ -4,7 +4,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal'; 
-import '../CSS/movieslist.css';
+
+import moviesListStyles from '../CSS/movieslist.module.css';
+
 const apiKey = '499d99db6ce23991d21afde0deede0f1';
 const baseUrl = 'https://api.themoviedb.org/3';
 
@@ -67,6 +69,46 @@ function MoviesList({ category, addToWatchlist }) {
       container.scrollBy({ left: 300, behavior: 'smooth' });
     }
   };
+  return (
+    <div>
+      <h2>{category}</h2>
+      <div className={moviesListStyles['movies-list']}>
+        <button className={moviesListStyles['scroll-button']} onClick={() => handleScrollClick('left')}>
+          {'<'}
+        </button>
+        <div className={`${moviesListStyles['movies-container']} ${moviesListStyles['movies-container-' + category]}`}>
+          {movies.map((movie) => (
+            <div key={movie.id} className={moviesListStyles['movie-card']}>
+              <Link to={`/movie/${movie.id}`}>
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                  alt={movie.title}
+                  style={{ height: '300px' }}
+                />
+                <h3 style={{ height: '40px', zIndex: 1 }}>{movie.title}</h3>
+              </Link>
+              <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <button onClick={() => addToWatchlist(movie)}>
+                  Watchlist<span>+</span>
+                </button>
+                <button onClick={() => playTrailer(movie)}>
+                  Play<span>▶</span> 
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+        <button className={moviesListStyles['scroll-button']} onClick={() => handleScrollClick('right')}>
+          {'>'}
+        </button>
+      </div>
+      ...
+    </div>
+  );
+  }
+  
+  export default MoviesList;
+  /*
   return (
     <div>
       <h2>{category}</h2>
@@ -181,3 +223,4 @@ function MoviesList({ category, addToWatchlist }) {
   );
 }
 export default MoviesList;
+*/

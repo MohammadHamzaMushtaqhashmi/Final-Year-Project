@@ -48,7 +48,7 @@ const Profile = ({ loggedInUser, setLoggedInUser }) => {
 
   return (
     <div>
-      < Header />
+      <Header loggedInUser={loggedInUser} fetchUserData={fetchUserData} />
       <h1>Profile</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name:</label>

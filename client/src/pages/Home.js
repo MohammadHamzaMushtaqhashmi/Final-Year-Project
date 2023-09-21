@@ -6,7 +6,7 @@ import MoviesList from '../Components/MoviesList';
 import Footer from '../Components/Footer';
 
 // Defining the Home component
-function Home({ addToWatchlist, loggedInUser }) {
+function Home({ addToWatchlist, loggedInUser, fetchUserData }) {
   // Rendering the home page with a header, hero section, and lists of movies
   return (
     <div>
@@ -14,7 +14,7 @@ function Home({ addToWatchlist, loggedInUser }) {
         className="content-wrapper"
         style={{ margin: '10px', display: 'flex', flexDirection: 'column' }}
       >
-        <Header loggedInUser={loggedInUser} />
+        <Header loggedInUser={loggedInUser} fetchUserData={fetchUserData} />
         <HeroSection />
         <MoviesList category="hollywood" addToWatchlist={addToWatchlist} />
         <MoviesList category="bollywood" addToWatchlist={addToWatchlist} />

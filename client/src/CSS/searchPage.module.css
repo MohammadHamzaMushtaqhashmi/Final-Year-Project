@@ -1,25 +1,4 @@
-.search-results-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
-}
 
-/* Styling the list items that represent individual search results */
-.search-results li {
-  background-color: #eee;
-  margin-bottom: 10px;
-  padding: 10px;
-}
-
-/* Styling the heading within each search result */
-.search-results h2 {
-  margin: 0;
-}
-
-/* Styling the image within each search result */
-.search-results img {
-  max-width: 100%;
-}
 
 
 .search-input {

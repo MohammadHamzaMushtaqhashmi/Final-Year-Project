@@ -3,6 +3,7 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 0.5rem;
+  text-transform: capitalize;
   color: white;
 }
 
@@ -54,6 +55,7 @@ header .nav ul li a svg {
 header .user {
   display: flex;
   align-items: center;
+  overflow: visible;
 }
 
 header .user svg {

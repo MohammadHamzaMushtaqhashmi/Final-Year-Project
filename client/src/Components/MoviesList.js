@@ -10,11 +10,14 @@ import moviesListStyles from '../CSS/movieslist.module.css';
 const apiKey = '499d99db6ce23991d21afde0deede0f1';
 const baseUrl = 'https://api.themoviedb.org/3';
 
-function MoviesList({ category, addToWatchlist }) {
+function MoviesList({ category, addToWatchlist , loggedInUser}) {
   const [movies, setMovies] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [trailerVideo, setTrailerVideo] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  
+
   const playTrailer = async (movie) => {
     setIsLoading(true);
     setSelectedMovie(movie);
@@ -31,22 +34,58 @@ function MoviesList({ category, addToWatchlist }) {
     );
     setTrailerVideo(trailer);
     setIsLoading(false);
+    
+  // Store click interaction in database
+  const interactionResponse = await fetch('/api/storeInteraction', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      userId: loggedInUser.id, // Assuming loggedInUser object contains the user's ID
+      movieId: movie.id,
+      interactionType: 'click',
+      timestamp: Date.now(),
+    }),
+  });
+
+  const interactionData = await interactionResponse.json();
+  console.log(interactionData.message);
   };
   const closeTrailer = () => {
     setSelectedMovie(null);
     setTrailerVideo(null);
   };
+  const handleMovieClick = async (movie) => {
+    // Store click interaction in database
+    const interactionResponse = await fetch('/api/storeInteraction', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        userId: loggedInUser.id, // Assuming loggedInUser object contains the user's ID
+        movieId: movie.id,
+        interactionType: 'view_details',
+        timestamp: Date.now(),
+      }),
+    });
+  
+    const interactionData = await interactionResponse.json();
+    console.log(interactionData.message);
+  };
+  
   useEffect(() => {
     const fetchData = async () => {
       let endpoint;
       switch (category) {
-        case 'hollywood':
+        case 'Hollywood':
           endpoint = '/movie/popular';
           break;
-        case 'bollywood':
+        case 'Bollywood':
           endpoint = '/discover/movie?with_original_language=hi';
           break;
-        case 'lollywood':
+        case 'Lollywood':
           endpoint = '/discover/movie?with_original_language=ur';
           break;
         default:
@@ -76,50 +115,10 @@ function MoviesList({ category, addToWatchlist }) {
         <button className={moviesListStyles['scroll-button']} onClick={() => handleScrollClick('left')}>
           {'<'}
         </button>
-        <div className={`${moviesListStyles['movies-container']} ${moviesListStyles['movies-container-' + category]}`}>
+        <div className={`${moviesListStyles['movies-container']} ${moviesListStyles['movies-container-' + category]}`} >
           {movies.map((movie) => (
             <div key={movie.id} className={moviesListStyles['movie-card']}>
-              <Link to={`/movie/${movie.id}`}>
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                  alt={movie.title}
-                  style={{ height: '300px' }}
-                />
-                <h3 style={{ height: '40px', zIndex: 1 }}>{movie.title}</h3>
-              </Link>
-              <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <button onClick={() => addToWatchlist(movie)}>
-                  Watchlist<span>+</span>
-                </button>
-                <button onClick={() => playTrailer(movie)}>
-                  Play<span>▶</span> 
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-        <button className={moviesListStyles['scroll-button']} onClick={() => handleScrollClick('right')}>
-          {'>'}
-        </button>
-      </div>
-      ...
-    </div>
-  );
-  }
-  
-  export default MoviesList;
-  /*
-  return (
-    <div>
-      <h2>{category}</h2>
-      <div className="movies-list">
-        <button className="scroll-button" onClick={() => handleScrollClick('left')}>
-          {'<'}
-        </button>
-        <div className={`movies-container movies-container-${category}`}>
-          {movies.map((movie) => (
-            <div key={movie.id} className="movie-card">
-              <Link to={`/movie/${movie.id}`}>
+              <Link to={`/movie/${movie.id}`} onClick={() => handleMovieClick(movie)} >
                 <img
                   src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                   alt={movie.title}
@@ -131,14 +130,14 @@ function MoviesList({ category, addToWatchlist }) {
                 <button onClick={() => addToWatchlist(movie)}>
                   Watchlist <span>+</span>
                 </button>
-                <button onClick={() => playTrailer(movie)}>
+                <button  onClick={() => playTrailer(movie)}>
                   <span>▶</span> Play
                 </button>
               </div>
             </div>
           ))}
         </div>
-        <button className="scroll-button" onClick={() => handleScrollClick('right')}>
+        <button className={moviesListStyles['scroll-button']} onClick={() => handleScrollClick('right')}>
           {'>'}
         </button>
       </div>
@@ -197,30 +196,34 @@ function MoviesList({ category, addToWatchlist }) {
                   height: '100%',
                 }}
               />
-            </div>
-
-          </Modal>
-          
-          <button
+            </div >
+            <div>
+            <button
             onClick={closeTrailer}
             onMouseEnter={(e) => (e.target.style.backgroundColor = '#000')}
             onMouseLeave={(e) => (e.target.style.backgroundColor = 'grey')}
+          >
+            <span 
             style={{
               position: 'fixed',
               top: 10,
               right: 10,
               fontSize: '24px',
-              backgroundColor: 'grey',
               border: 'none',
-              color: '#fff',
+              color: 'white',
+              background : 'none',
+              cursor : 'pointer',
+              padding : '4px',
+              marginLeft : '18px'
             }}
-          >
-            ×
+            >X</span>
           </button>
+            </div>
+
+          </Modal>
         </>
       )}
     </div>
   );
 }
 export default MoviesList;
-*/

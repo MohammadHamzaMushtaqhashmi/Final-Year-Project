@@ -15,10 +15,10 @@ function Home({ addToWatchlist, loggedInUser, fetchUserData }) {
         style={{ margin: '10px', display: 'flex', flexDirection: 'column' }}
       >
         <Header loggedInUser={loggedInUser} fetchUserData={fetchUserData} />
-        <HeroSection />
-        <MoviesList category="hollywood" addToWatchlist={addToWatchlist} />
-        <MoviesList category="bollywood" addToWatchlist={addToWatchlist} />
-        <MoviesList category="lollywood" addToWatchlist={addToWatchlist} />
+        <HeroSection addToWatchlist={addToWatchlist} />
+        <MoviesList category="Hollywood" addToWatchlist={addToWatchlist} />
+        <MoviesList category="Bollywood" addToWatchlist={addToWatchlist} />
+        <MoviesList category="Lollywood" addToWatchlist={addToWatchlist}  />
       </div>
       <Footer />
     </div>

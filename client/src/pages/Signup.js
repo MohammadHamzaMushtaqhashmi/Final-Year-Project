@@ -1,12 +1,12 @@
 
-// Importing necessary modules and components
-import React, { useState } from 'react';
+import React, { useState, useContext  } from 'react';
 import { useNavigate } from 'react-router-dom';
+import UserContext from '../Components/UserContext';
 import loginStyles from '../CSS/login.module.css';
 
-// Defining the Signup component
+
 function Signup() {
-  // Setting up state for the form inputs and error/success messages
+  const { setUser } = useContext(UserContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
@@ -14,11 +14,9 @@ function Signup() {
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
 
-  // Defining a function to handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Sending a POST request to the /signup route on the server
     const response = await fetch('http://localhost:3001/signup', {
       method: 'POST',
       headers: {
@@ -31,33 +29,53 @@ function Signup() {
       }),
     });
 
-    // Handling the response from the server
     if (response.ok) {
-      // Signup was successful
-
-      // Updating the successMessage state variable with an appropriate message
+      const data = await response.json();
+      setUser(data.user); // Use setUser to update the user context
       setSuccessMessage('Sign up successful! Redirecting to home page...');
-
-      // Navigating to the home page after a delay
       setTimeout(() => {
         navigate('/');
       }, 1000);
     } else {
-      // Signup failed
       const data = await response.json();
       setErrorMessage(data.error || 'An error occurred. Please try again.');
     }
   };
+/*
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-  // Defining a function to handle clicks on the "Sign up with Facebook" button
+    const response = await fetch('http://localhost:3001/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username,
+        email,
+        password,
+      }),
+    });
+
+    if (response.ok) {
+    const data = await response.json();
+
+    setLoggedInUser(data.user);
+      setSuccessMessage('Sign up successful! Redirecting to home page...');
+      setTimeout(() => {
+        navigate('/');
+      }, 1000);
+    } else {
+      const data = await response.json();
+      setErrorMessage(data.error || 'An error occurred. Please try again.');
+    }
+  };
+*/
   const handleFacebookSignupClick = () => {
     FB.login(function(response) {
       if (response.authResponse) {
         console.log('User signed up successfully!');
-
-        // Retrieving the user's name and email from Facebook
         FB.api('/me', { fields: 'name,email' }, function(response) {
-          // Sending a POST request to the /signup route on the server
           fetch('http://localhost:3001/signup', {
             method: 'POST',
             headers: {
@@ -70,7 +88,6 @@ function Signup() {
             }),
           });
 
-          // Navigating to the home page
           navigate('/');
         });
       } else {
@@ -79,7 +96,6 @@ function Signup() {
     });
   };
 
-// Rendering the signup form with error/success messages and a "Sign up with Facebook" button
 return (
   <div className={loginStyles['login-container']}>
       <div className={loginStyles['login-form']}>

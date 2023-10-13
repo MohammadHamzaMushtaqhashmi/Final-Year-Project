@@ -6,7 +6,9 @@
   padding: 1cm;
   overflow: hidden;
 }
-
+.MovieContainer a {
+  display: block;
+}
 .HeroSection {
   height: auto;
   background-size: contain;
@@ -18,7 +20,7 @@
 
 .HeroSection img{
   height: 70vh;
-  width: 50%;
+  /*width: 50%;*/
 }
 .HeroContent {
   position: relative;

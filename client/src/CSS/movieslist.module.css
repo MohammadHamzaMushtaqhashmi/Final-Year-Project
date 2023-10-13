@@ -3,6 +3,21 @@
   display: flex;
   align-items: center;
 }
+/* Setting the style and appearance of the movies grid */
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+/* Setting the style and appearance of each movie grid item */
+.movie-grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
 
 
 /* Setting the style and appearance of the scroll button */

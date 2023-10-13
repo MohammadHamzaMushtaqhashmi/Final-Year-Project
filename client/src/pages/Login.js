@@ -1,36 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useContext  } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import loginStyles from '../CSS/login.module.css';
 import axios from 'axios';
+import UserContext from '../Components/UserContext';
 
-function Login({ setLoggedInUser , fetchUserData}) {
+function Login() {
+  const { setUser } = useContext(UserContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
 
-  // Storing the token in local storage when sign in/sign up in SignIn component
-  const handleSignIn = (e) => {
-    e.preventDefault();
-    // Making a POST request to /signin with axios
-    axios
-      .post('/signin', { email: email, password: password })
-      .then((response) => {
-        // Getting the token from the response data
-        const token = response.data.token;
-        // Storing the token in local storage with 'token' as key
-        localStorage.setItem('token', token);
-        // Calling fetchUserData function with token as argument
-        fetchUserData(token);
-      })
-      .catch((error) => {
-        // Handling any errors
-        console.error(error);
-      });
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const response = await fetch('http://localhost:3001/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      setUser(data.user); // Use setUser to update the user context
+      setSuccessMessage('Login successful! Redirecting to home page...');
+      setTimeout(() => {
+        navigate('/');
+      }, 1000);
+    } else {
+      const data = await response.json();
+      setErrorMessage(data.error || 'An error occurred. Please try again.');
+    }
   };
-
+/*
   const handleSubmit = async (event) => {
     event.preventDefault();
     const response = await fetch('http://localhost:3001/login', {
@@ -55,7 +62,7 @@ function Login({ setLoggedInUser , fetchUserData}) {
       setErrorMessage(data.error || 'An error occurred. Please try again.');
     }
   };
-
+*/
   const handleFacebookLoginClick = () => {
     FB.login(function(response) {
       if (response.authResponse) {

@@ -12,7 +12,7 @@ function WatchlistPage({ loggedInUser,watchlist, removeFromWatchlist , fetchUser
       <Header loggedInUser={loggedInUser} fetchUserData={fetchUserData} />
       <div
         style={{
-          minHeight: 'calc(120vh - 200px)',
+          minHeight: 'calc(100vh - 200px)',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -23,7 +23,7 @@ function WatchlistPage({ loggedInUser,watchlist, removeFromWatchlist , fetchUser
             style={{
               textAlign: 'center',
               fontSize: '24px',
-              color: '#777',
+              color: 'white',
             }}
           >
             Your watchlist is empty 😔

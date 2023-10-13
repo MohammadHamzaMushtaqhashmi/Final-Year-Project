@@ -11,7 +11,7 @@ import moviePageStyles from '../CSS/moviepage.module.css';
 const apiKey = '499d99db6ce23991d21afde0deede0f1';
 const baseUrl = 'https://api.themoviedb.org/3';
 
-function MoviePage({ loggedInUser,fetchUserData }) {
+function MoviePage({ loggedInUser,fetchUserData, addToWatchlist }) {
   // Using the useParams hook to get the ID of the selected movie from the URL parameter
   const { id } = useParams();
   const navigate = useNavigate();
